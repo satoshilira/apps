@@ -2,6 +2,7 @@ import {useAccount, useConnect, useContractRead, useDisconnect} from 'wagmi';
 import { InjectedConnector } from 'wagmi/connectors/injected'
 import lira from './abi/arbitrum/lira.json'
 import sacrifice from './abi/arbitrum/sacrifice.json'
+import {BigNumber} from "ethers";
 
 export function useWallet() {
   const { address, isConnected } = useAccount()
@@ -22,7 +23,7 @@ export function useWallet() {
 }
 
 export function useLira() {
-  const address = '0xaA72fDfD9Ac5fd3bcaD5d151497b99467f0C75d2'
+  const address = '0xA07ac236fEBc390c798504E927DC8D6a4e1FfcA3'
 
   const {data: totalSupply, isLoading: isLoadingTotalSupply} = useContractRead({
     abi: lira,
@@ -36,10 +37,12 @@ export function useLira() {
     functionName: 'lockedSupply'
   })
 
-  return {
-    totalSupply,
-    isLoadingTotalSupply,
+  const intrinsicValue = BigNumber.from(lockedSupply).toNumber() / BigNumber.from(totalSupply).div(BigNumber.from(10).pow(8)).toNumber()
 
+  return {
+    totalSupply: BigNumber.from(totalSupply).div(BigNumber.from(10).pow(8)),
+    isLoadingTotalSupply,
+    intrinsicValue,
     lockedSupply,
     isLoadingLockedSupply,
   }
