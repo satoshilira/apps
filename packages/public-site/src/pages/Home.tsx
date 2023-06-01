@@ -7,6 +7,8 @@ import button from '../img/button.svg';
 import {Row} from "../components/Row";
 import {ReactElement} from "react";
 import {useLira} from "../hooks";
+import { formatUint256 } from "../utils";
+import {BigNumber} from "ethers";
 
 const StyledContainer = styled(Col)`
   max-width: 2048px;
@@ -73,13 +75,13 @@ export function TextWithVariation({text, value, positive = true}: TextWithVariat
 
 export default function Home() {
   const {totalSupply, lockedSupply, isLoadingTotalSupply, isLoadingLockedSupply, intrinsicValue} = useLira()
-  console.log('lockedSupply', lockedSupply)
-  const lockedSupplyText = !isLoadingLockedSupply
-    ? <Typography as="h6" color="white" margin="32px 0 0">{`${lockedSupply} SAT`}</Typography>
+
+  const lockedSupplyText = !isLoadingLockedSupply && lockedSupply
+    ? <Typography as="h6" color="white" margin="32px 0 0">{`${formatUint256(lockedSupply as BigNumber, 0, false, 0)} SAT`}</Typography>
     : null
 
   const totalSupplyText = !isLoadingTotalSupply
-    ? <Typography as="h6" color="white" margin="32px 0 0">{`${totalSupply} LIRA`}</Typography>
+    ? <Typography as="h6" color="white" margin="32px 0 0">{`${formatUint256(totalSupply as BigNumber, 0, false, 0)} LIRA`}</Typography>
     : null
 
   const liraValue = <TextWithVariation text={`1 LIRA = ${intrinsicValue.toFixed(2)} SAT`} value={Number((intrinsicValue - 1) * 100).toFixed(2)} />
