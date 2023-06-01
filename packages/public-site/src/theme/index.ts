@@ -6,6 +6,7 @@ export interface FontSizes {
   h5: string
   h6: string
   button: string
+  body: string
   p: string
   caption: string
 }
@@ -59,6 +60,7 @@ const fontSizes: FontSizes = {
   h5: '40px',
   h6: '32px',
   button: '40px',
+  body: '28px',
   p: '18px',
   caption: '16px',
 }

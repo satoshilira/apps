@@ -7,13 +7,13 @@ import button from '../img/button.svg';
 import {Row} from "../components/Row";
 import {ReactElement} from "react";
 import {useLira} from "../hooks";
-import { formatUint256 } from "../utils";
+import {formatUint256} from "../utils";
 import {BigNumber} from "ethers";
 
 const StyledContainer = styled(Col)`
   max-width: 2048px;
   margin: 0 auto;
-  
+
   &:before {
     content: "";
     position: absolute;
@@ -41,10 +41,10 @@ export interface InfoBoxProps {
   subtitle: string
 }
 
-export function InfoBox({ width, heading, subtitle }: InfoBoxProps) {
+export function InfoBox({width, heading, subtitle}: InfoBoxProps) {
   return (
     <Col width={width}>
-      <StyledRectangle />
+      <StyledRectangle/>
       <Row>
         {heading}
       </Row>
@@ -77,44 +77,66 @@ export default function Home() {
   const {totalSupply, lockedSupply, isLoadingTotalSupply, isLoadingLockedSupply, intrinsicValue} = useLira()
 
   const lockedSupplyText = !isLoadingLockedSupply && lockedSupply
-    ? <Typography as="h6" color="white" margin="32px 0 0">{`${formatUint256(lockedSupply as BigNumber, 0, false, 0)} SAT`}</Typography>
+    ? <Typography as="h6" color="white"
+                  margin="32px 0 0">{`${formatUint256(lockedSupply as BigNumber, 0, false, 0)} SAT`}</Typography>
     : null
 
   const totalSupplyText = !isLoadingTotalSupply
-    ? <Typography as="h6" color="white" margin="32px 0 0">{`${formatUint256(totalSupply as BigNumber, 0, false, 0)} LIRA`}</Typography>
+    ? <Typography as="h6" color="white"
+                  margin="32px 0 0">{`${formatUint256(totalSupply as BigNumber, 0, false, 0)} LIRA`}</Typography>
     : null
 
-  const liraValue = <TextWithVariation text={`1 LIRA = ${intrinsicValue.toFixed(2)} SAT`} value={Number((intrinsicValue - 1) * 100).toFixed(2)} />
+  const liraValue = <TextWithVariation text={`1 LIRA = ${intrinsicValue.toFixed(2)} SAT`}
+                                       value={Number((intrinsicValue - 1) * 100).toFixed(2)}/>
 
   return (
     <StyledContainer>
       <Col>
         <Row>
           <Typography as="h2" color="white" fontFamily="secondary">
-            CRYPTOCURRENCY <br />GLOBAL <ColorWrap color="primary">REVOLUTION</ColorWrap>
+            CRYPTOCURRENCY <br/>GLOBAL <ColorWrap color="primary">REVOLUTION</ColorWrap>
           </Typography>
         </Row>
 
         <Row>
           <InfoBox
-            width={1/4}
+            width={1 / 4}
             heading={lockedSupplyText}
             subtitle="wBTC LOCKED"
           />
           <InfoBox
-            width={1/4}
+            width={1 / 4}
             heading={totalSupplyText}
             subtitle="TOTAL SUPPLY"
           />
         </Row>
 
         <Row marginTop={56}>
-          <InfoBox width={1/2} heading={liraValue} subtitle="LIRA INTRINSIC VALUE" />
+          <InfoBox width={1 / 2} heading={liraValue} subtitle="LIRA INTRINSIC VALUE"/>
         </Row>
 
         <Row marginTop={120}>
-          <img src={button} alt="Buy LIRA" style={{opacity: 0.3}} />
+          <img src={button} alt="Buy LIRA" style={{opacity: 0.3}}/>
         </Row>
+      </Col>
+
+      <Col marginY={160}>
+        <Row>
+          <Typography as="h3" color="white" marginY={32}>
+            <ColorWrap color="primary">"</ColorWrap><br />Join the <ColorWrap color="primary">revolution</ColorWrap>
+          </Typography>
+        </Row>
+        <Col width={4/5}>
+          <Typography color="white" fontSize="body" marginY={32}>
+            Satoshi LIRA presents a revolutionary project within the cryptocurrency sector, offering economic and
+            political independence through decentralized finance. By leveraging liquidity provision as our core
+            business, we generate value that is converted into BTC, creating the LIRA derivative.
+          </Typography>
+            <Typography color="white" fontSize="body" marginY={0}>
+            Take the first step toward a new era of financial freedom with Satoshi LIRA. Join our community and explore
+            the endless possibilities of decentralized finance today.
+          </Typography>
+        </Col>
       </Col>
     </StyledContainer>
   )
