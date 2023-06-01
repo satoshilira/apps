@@ -37,10 +37,10 @@ export function useLira() {
     functionName: 'lockedSupply'
   })
 
-  const intrinsicValue = BigNumber.from(lockedSupply).toNumber() / BigNumber.from(totalSupply).div(BigNumber.from(10).pow(8)).toNumber()
+  const intrinsicValue = BigNumber.from(lockedSupply || 0).toNumber() / BigNumber.from(totalSupply || 0).div(BigNumber.from(10).pow(8)).toNumber()
 
   return {
-    totalSupply: BigNumber.from(totalSupply).div(BigNumber.from(10).pow(8)),
+    totalSupply: BigNumber.from(totalSupply || 0).div(BigNumber.from(10).pow(8)),
     isLoadingTotalSupply,
     intrinsicValue,
     lockedSupply,
