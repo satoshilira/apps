@@ -64,11 +64,11 @@ export function Header() {
           </StyledMenuItem>
         </NavLink>
 
-        <NavLink to="/blockchain-data">
-          <StyledMenuItem marginLeft={28}>
-            BLOCKCHAIN DATA
-          </StyledMenuItem>
-        </NavLink>
+        {/*<NavLink to="/blockchain-data">*/}
+        {/*  <StyledMenuItem marginLeft={28}>*/}
+        {/*    BLOCKCHAIN DATA*/}
+        {/*  </StyledMenuItem>*/}
+        {/*</NavLink>*/}
       </Row>
 
       <Row width={1/3} justifyContent="flex-end">
