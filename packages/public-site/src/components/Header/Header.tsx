@@ -3,6 +3,7 @@ import {Row} from "../Row";
 import {Typography} from "../Typography";
 import styled from "styled-components";
 import {NavLink} from "react-router-dom";
+import button from "../../img/button.svg";
 
 const StyledMenuItem = styled(Typography)`
   color: ${props => props.theme.colors['white-80']};
@@ -71,9 +72,7 @@ export function Header() {
       </Row>
 
       <Row width={1/3} justifyContent="flex-end">
-        <StyledButton>
-          ENTER APP
-        </StyledButton>
+        <img src={button} height={64} alt="Buy LIRA" style={{opacity: 0.3}} />
       </Row>
     </Row>
   )

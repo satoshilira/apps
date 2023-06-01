@@ -113,7 +113,7 @@ export default function Home() {
         </Row>
 
         <Row marginTop={120}>
-          <img src={button} alt="Buy LIRA" />
+          <img src={button} alt="Buy LIRA" style={{opacity: 0.3}} />
         </Row>
       </Col>
     </StyledContainer>
