@@ -11,6 +11,7 @@ import Tokens from './pages/Tokens';
 import Sacrifice from './pages/Sacrifice';
 import BlockchainData from './pages/BlockchainData';
 import {GlobalStyles} from './components/ui';
+import {Col} from "./components/Col";
 
 // TODO: refactor to custom hook (eg add chain)
 const config = createConfig({
@@ -21,55 +22,22 @@ const config = createConfig({
   }),
 })
 
-function HomeOld() {
-  const {address, isConnected} = useWallet()
-  console.log('home', address, isConnected)
-
-  const {totalSupply, lockedSupply, isLoadingTotalSupply, isLoadingLockedSupply} = useLira()
-  const {bonus, sacrified, start, end, sacrificable, isLoadingSacrifice} = useSacrifice();
-
-  console.log('round', {bonus, sacrified, start, end, sacrificable, isLoadingSacrifice})
-
-  return (
-    <div>
-      isConnected: {isConnected ? 'true' : 'false'}
-      <br/>
-      totalSupply: {!isLoadingTotalSupply && totalSupply?.toString()}
-      <br/>
-      lockedSupply: {!isLoadingLockedSupply && lockedSupply?.toString()}
-      <br/>
-      bonus: {!isLoadingSacrifice && bonus}
-      <br/>
-      sacrified: {!isLoadingSacrifice && sacrified}
-      <br/>
-      sacrificable: {!isLoadingSacrifice && sacrificable}
-      <br/>
-      end: {!isLoadingSacrifice && new Date(end * 1000).toISOString()}
-      <br/>
-      start: {!isLoadingSacrifice && new Date(start * 1000).toISOString()}
-      <br/>
-      <br/>
-
-
-    </div>
-  )
-}
-
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
-      <GlobalStyles />
+      <GlobalStyles/>
       <WagmiConfig config={config}>
         <BrowserRouter>
-          <Header/>
-          <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/tokens' element={<Tokens />} />
-            <Route path='/sacrifice' element={<Sacrifice />} />
-            <Route path='/blockchain-data' element={<BlockchainData />} />
-          </Routes>
+          <Col maxWidth={2048} margin="0 auto" padding="0 28px">
+            <Header/>
+            <Routes>
+              <Route path='/' element={<Home/>}/>
+              <Route path='/tokens' element={<Tokens/>}/>
+              <Route path='/sacrifice' element={<Sacrifice/>}/>
+              <Route path='/blockchain-data' element={<BlockchainData/>}/>
+            </Routes>
+          </Col>
         </BrowserRouter>
-
       </WagmiConfig>
     </ThemeProvider>
   )

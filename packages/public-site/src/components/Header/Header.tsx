@@ -39,12 +39,12 @@ const StyledButton = styled(Row)`
   font-size: 24px;
   font-weight: 700;
   line-height: 24px;
-  background: ${props => props.theme.colors.gradients.horizontalGreenToCyan};
+  background: ${props => props.theme.colors.horizontalGreenToCyan};
 `
 
 export function Header() {
   return (
-    <Row height={176} justifyContent="space-between" alignItems="center" maxWidth={2048} margin="0 auto" padding="0 28px">
+    <Row height={176} justifyContent="space-between" alignItems="center">
       <Row width={1/3}>
         <NavLink to="/">
           <img src={logo} height={64} alt="satoshi lira logo"/>

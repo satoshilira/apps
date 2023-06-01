@@ -7,6 +7,7 @@ export interface FontSizes {
   h6: string
   button: string
   body: string
+  subtitle: string
   p: string
   caption: string
 }
@@ -39,11 +40,9 @@ export interface Colors {
     '800': string
     '900': string
   },
-  gradients: {
-    horizontalGreenToCyan: string
-    verticalGreenToTransparent: string
-    verticalWhiteToTransparent: string
-  }
+  horizontalGreenToCyan: string
+  verticalGreenToTransparent: string
+  verticalWhiteToTransparent: string
 }
 
 export interface Theme {
@@ -61,6 +60,7 @@ const fontSizes: FontSizes = {
   h6: '32px',
   button: '40px',
   body: '28px',
+  subtitle: '26px',
   p: '18px',
   caption: '16px',
 }
@@ -93,11 +93,9 @@ const colors: Colors = {
     '800': '#646D74',
     '900': '#3B3F44',
   },
-  gradients: {
-    horizontalGreenToCyan: 'linear-gradient(94.56deg, #B6FE46 7.15%, rgba(9, 254, 245, 0.6) 90.05%)',
-    verticalGreenToTransparent: 'linear-gradient(180deg, rgba(182, 254, 70, 0.8) 0%, rgba(217, 217, 217, 0) 100%)',
-    verticalWhiteToTransparent: 'linear-gradient(180deg, rgba(255, 255, 255, 0.8) 7.41%, rgba(255, 255, 255, 0) 85.19%)',
-  }
+  horizontalGreenToCyan: 'linear-gradient(94.56deg, #B6FE46 7.15%, rgba(9, 254, 245, 0.6) 90.05%)',
+  verticalGreenToTransparent: 'linear-gradient(180deg, rgba(182, 254, 70, 0.8) 0%, rgba(217, 217, 217, 0) 100%)',
+  verticalWhiteToTransparent: 'linear-gradient(180deg, rgba(255, 255, 255, 0.8) 7.41%, rgba(255, 255, 255, 0) 85.19%)',
 }
 
 const theme = {
