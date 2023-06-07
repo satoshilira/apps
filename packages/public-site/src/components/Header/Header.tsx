@@ -45,13 +45,13 @@ const StyledButton = styled(Row)`
 export function Header() {
   return (
     <Row height={176} justifyContent="space-between" alignItems="center">
-      <Row width={1/3}>
+      <Row width={1 / 3}>
         <NavLink to="/">
           <img src={logo} height={64} alt="satoshi lira logo"/>
         </NavLink>
       </Row>
 
-      <Row width={1/3} justifyContent="center">
+      <Row width={1 / 3} justifyContent="center">
         <a href='https://whitepaper.satoshilira.io' target="_blank" rel="noreferrer">
           <StyledMenuItem marginRight={28}>
             WHITEPAPER
@@ -71,8 +71,10 @@ export function Header() {
         {/*</NavLink>*/}
       </Row>
 
-      <Row width={1/3} justifyContent="flex-end">
-        <img src={button} height={64} alt="Buy LIRA" style={{opacity: 0.3}} />
+      <Row width={1 / 3} justifyContent="flex-end">
+        <NavLink to="/sacrifice">
+          <img src={button} height={64} alt="Buy LIRA" style={{opacity: 0.3}}/>
+        </NavLink>
       </Row>
     </Row>
   )

@@ -68,4 +68,8 @@ export const GlobalStyles = createGlobalStyle`
   a:visited {
     text-decoration: none;
   }
+  
+  h5 {
+    margin: 0 0 28px 0;
+  }
 `;

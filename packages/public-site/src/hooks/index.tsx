@@ -1,8 +1,10 @@
 import {useAccount, useConnect, useContractRead, useDisconnect} from 'wagmi';
 import { InjectedConnector } from 'wagmi/connectors/injected'
 import lira from './abi/arbitrum/lira.json'
-import sacrifice from './abi/arbitrum/sacrifice.json'
+import sacrifice from '@satoshi-lira/deployments/arbitrumGoerli/LIRASacrifice.json'
 import {BigNumber} from "ethers";
+import {EthereumAddress} from "../types";
+import {useCallback} from "react";
 
 export function useWallet() {
   const { address, isConnected } = useAccount()
@@ -49,32 +51,41 @@ export function useLira() {
 }
 
 export function useSacrifice() {
-  const address = '0x1F377350677C51d6469a6A781Da58d8a9A554012'
+  const {data: started, isLoading: isLoadingStarted} = useContractRead({
+    abi: sacrifice.abi,
+    address: sacrifice.address as EthereumAddress,
+    functionName: 'started',
+  })
 
-  const {data: round, isLoading: isLoadingRound} = useContractRead({
-    abi: sacrifice,
-    address,
+  const {data: round, isLoading: isLoadingRound, refetch: refetchRound} = useContractRead({
+    abi: sacrifice.abi,
+    address: sacrifice.address as EthereumAddress,
     functionName: 'round',
+    watch: !!started,
+    enabled: !!started,
   })
 
   const {data: sacrificableAmount, isLoading: isLoadingSacrificableAmount} = useContractRead({
-    abi: sacrifice,
-    address,
+    abi: sacrifice.abi,
+    address: sacrifice.address as EthereumAddress,
     functionName: 'sacrificableAmount',
   })
 
   return {
+    started,
+    isLoadingStarted,
     // TODO: typings
     // @ts-ignore
     bonus: Number(round?.bonus) || 0,
     // @ts-ignore
     sacrified: Number(round?.sacrified) || 0,
     // @ts-ignore
-    start: Number(round?.start) || 0,
+    start: new Date(Number(round?.start) * 1000) || 0,
     // @ts-ignore
-    end: Number(round?.end) || 0,
+    end: new Date(Number(round?.end) * 1000) || 0,
     // @ts-ignore
     sacrificable: Number(sacrificableAmount) - Number(round?.sacrified),
     isLoadingSacrifice: !(!isLoadingSacrificableAmount && !isLoadingRound),
+    refetchRound,
   }
 }

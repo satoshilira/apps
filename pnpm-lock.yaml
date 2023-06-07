@@ -34,6 +34,9 @@ importers:
       '@metamask/sdk':
         specifier: ^0.3.0
         version: 0.3.0(@types/react@18.2.7)(react-native@0.71.8)(react@18.2.0)
+      '@satoshi-lira/deployments':
+        specifier: 1.1.0-alpha.1
+        version: 1.1.0-alpha.1
       '@testing-library/jest-dom':
         specifier: ^5.16.5
         version: 5.16.5
@@ -5878,6 +5881,10 @@ packages:
       cross-fetch: 3.1.6
     transitivePeerDependencies:
       - encoding
+    dev: false
+
+  /@satoshi-lira/deployments@1.1.0-alpha.1:
+    resolution: {integrity: sha512-wjRrtNe1sCmxm3kHLVdCw3vKU+naUbfHIfrZIp/DuAtnj0e25kg8I+5pd8iHydyh8P2gj5tAX16PwngAzI04Rg==}
     dev: false
 
   /@scure/base@1.1.1:

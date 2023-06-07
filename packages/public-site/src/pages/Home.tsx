@@ -1,17 +1,15 @@
+import {ReactElement} from 'react';
 import styled from 'styled-components';
+import {BigNumber} from 'ethers';
 import {Col} from '../components/Col';
 import {Typography} from '../components/Typography';
-import {ColorWrap} from '../components';
-import daVinciLira from '../img/da-vinci-lira.svg';
-import button from '../img/button.svg';
+import {ColorWrap, Countdown} from '../components';
 import {Row} from '../components/Row';
-import {ReactElement} from 'react';
 import {useLira} from '../hooks';
 import {formatUint256} from '../utils';
-import {BigNumber} from 'ethers';
-import Countdown from 'react-countdown';
-import {CountdownRenderProps} from 'react-countdown/dist/Countdown';
 import {Colors} from "../theme";
+import daVinciLira from '../img/da-vinci-lira.svg';
+import button from '../img/button.svg';
 
 const StyledContainer = styled(Col)`
   max-width: 2048px;
@@ -100,38 +98,6 @@ export default function Home() {
   const liraValue = <TextWithVariation text={`1 LIRA = ${intrinsicValue.toFixed(2)} SAT`}
                                        value={Number((intrinsicValue - 1) * 100).toFixed(2)}/>
 
-  const countdownRenderer = ({ days, hours, minutes, seconds, completed }: CountdownRenderProps) => {
-    if (completed) {
-      // Render a completed state
-      return 'ended';
-    }
-
-    return (
-      <Row justifyContent="center">
-        <Col marginX={32}>
-          <Typography color="white" fontFamily="secondary" fontSize="h4" fontWeight="bold" lineHeight="60px" margin={0}>{days}</Typography>
-          <Typography color="white" fontSize="subtitle" margin="0 0 10px" lineHeight="30px">Days</Typography>
-          <StyledRectangle width={92} height={4} color="horizontalGreenToCyan" opacity={0.6} />
-        </Col>
-        <Col marginX={32}>
-          <Typography color="white" fontFamily="secondary" fontSize="h4" fontWeight="bold" lineHeight="60px" margin={0}>{hours}</Typography>
-          <Typography color="white" fontSize="subtitle" margin="0 0 10px" lineHeight="30px">Hours</Typography>
-          <StyledRectangle width={92} height={4} color="horizontalGreenToCyan" opacity={0.6} />
-        </Col>
-        <Col marginX={32}>
-          <Typography color="white" fontFamily="secondary" fontSize="h4" fontWeight="bold" lineHeight="60px" margin={0}>{minutes}</Typography>
-          <Typography color="white" fontSize="subtitle" margin="0 0 10px" lineHeight="30px">Minutes</Typography>
-          <StyledRectangle width={92} height={4} color="horizontalGreenToCyan" opacity={0.6} />
-        </Col>
-        <Col marginX={32}>
-          <Typography color="primary" fontFamily="secondary" fontSize="h4" fontWeight="bold" lineHeight="60px" margin={0}>{seconds}</Typography>
-          <Typography color="white" fontSize="subtitle" margin="0 0 10px" lineHeight="30px">Sec</Typography>
-          <StyledRectangle width={92} height={4} color="horizontalGreenToCyan" opacity={0.6} />
-        </Col>
-      </Row>
-    )
-  };
-
   return (
     <StyledContainer>
       <Col>
@@ -183,10 +149,7 @@ export default function Home() {
       </Col>
 
       <Col marginY={80}>
-        <Countdown
-          date={new Date('06/18/2023')}
-          renderer={countdownRenderer}
-        />
+        <Countdown date={new Date('06/18/2023')} />
       </Col>
     </StyledContainer>
   )
