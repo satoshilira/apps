@@ -7,26 +7,36 @@ import {ColorWrap, Countdown} from '../components';
 import {Row} from '../components/Row';
 import {useLira} from '../hooks';
 import {formatUint256} from '../utils';
-import {Colors} from "../theme";
+import theme, {Colors} from '../theme';
 import daVinciLira from '../img/da-vinci-lira.svg';
 import button from '../img/button.svg';
+import {background, BackgroundProps, fontSize, FontSizeProps} from 'styled-system';
 
-const StyledContainer = styled(Col)`
-  max-width: 2048px;
-  margin: 0 auto;
+const StyledContainer = styled(Col)<BackgroundProps>`
+  background-image: url(${daVinciLira});
+  background-repeat: no-repeat;
 
-  &:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 1546px;
-    height: 1304px;
-    background-image: url(${daVinciLira});
-    background-repeat: no-repeat;
-    background-position: right center;
-    z-index: -1;
-  }
+  background-position-y: -250px;
+
+  // &:before {
+  //   content: "";
+  //   position: absolute;
+  //   top: 0;
+  //   right: 0;
+  //   width: 1546px;
+  //   height: 1304px;
+  //   background-image: url(${daVinciLira});
+  //   background-repeat: no-repeat;
+  //   background-position: right center;
+  //   z-index: -1;
+  // }
+  ${background}
+`
+
+const StyledText = styled.p<FontSizeProps>`
+  color: ${props => props.theme.colors.white};
+  font-family: ${props => props.theme.fontFamilies.secondary};
+  ${fontSize};
 `
 
 export interface StyledRectangleProps {
@@ -99,12 +109,12 @@ export default function Home() {
                                        value={Number((intrinsicValue - 1) * 100).toFixed(2)}/>
 
   return (
-    <StyledContainer>
-      <Col>
+    <StyledContainer backgroundPosition={['10% -250px', '20% -250px', '50% -250px', '100% -250px']}>
+      <Col width={1} maxWidth={2048} margin="0 auto">
         <Row>
-          <Typography as="h2" color="white" fontFamily="secondary">
+          <StyledText as="h2" fontSize={['32px', '46px', '80px', '96px']}>
             CRYPTOCURRENCY <br/>GLOBAL <ColorWrap color="primary">REVOLUTION</ColorWrap>
-          </Typography>
+          </StyledText>
         </Row>
 
         <Row>
@@ -129,7 +139,7 @@ export default function Home() {
         </Row>
       </Col>
 
-      <Col marginTop={160} marginBottom={80}>
+      <Col width={1} maxWidth={2048} margin="0 auto" marginTop={160} marginBottom={80}>
         <Row>
           <Typography as="h3" color="white" marginY={32}>
             <ColorWrap color="primary">"</ColorWrap><br/>Join the <ColorWrap color="primary">revolution</ColorWrap>

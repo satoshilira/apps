@@ -44,7 +44,7 @@ const StyledButton = styled(Row)`
 
 export function Header() {
   return (
-    <Row height={176} justifyContent="space-between" alignItems="center">
+    <Row height={176} maxWidth={2048} margin="0 auto" padding={['0', '0', '0', '0 20px']} flexDirection={['column', 'column', 'row', 'row']} justifyContent="space-between" alignItems="center">
       <Row width={1 / 3}>
         <NavLink to="/">
           <img src={logo} height={64} alt="satoshi lira logo"/>

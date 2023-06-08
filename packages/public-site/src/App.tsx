@@ -28,15 +28,13 @@ export default function App() {
       <GlobalStyles/>
       <WagmiConfig config={config}>
         <BrowserRouter>
-          <Col maxWidth={2048} margin="0 auto" padding="0 28px">
-            <Header/>
-            <Routes>
-              <Route path='/' element={<Home/>}/>
-              <Route path='/tokens' element={<Tokens/>}/>
-              <Route path='/sacrifice' element={<Sacrifice/>}/>
-              <Route path='/blockchain-data' element={<BlockchainData/>}/>
-            </Routes>
-          </Col>
+          <Header/>
+          <Routes>
+            <Route path='/' element={<Home/>}/>
+            <Route path='/tokens' element={<Tokens/>}/>
+            <Route path='/sacrifice' element={<Sacrifice/>}/>
+            <Route path='/blockchain-data' element={<BlockchainData/>}/>
+          </Routes>
         </BrowserRouter>
       </WagmiConfig>
     </ThemeProvider>
