@@ -5,10 +5,10 @@ import {
   height, HeightProps,
   space, SpaceProps,
   width, WidthProps,
-  maxWidth, MaxWidthProps,
+  maxWidth, MaxWidthProps, display, DisplayProps,
 } from 'styled-system';
 
-export type RowProps = FlexboxProps & SpaceProps & WidthProps & MaxWidthProps & HeightProps & BackgroundProps
+export type RowProps = FlexboxProps & SpaceProps & WidthProps & MaxWidthProps & HeightProps & BackgroundProps & DisplayProps
 
 export const Row = styled.div<RowProps>`
   display: flex;
@@ -19,4 +19,5 @@ export const Row = styled.div<RowProps>`
   ${height}
   ${space}
   ${background}
+  ${display}
 `;

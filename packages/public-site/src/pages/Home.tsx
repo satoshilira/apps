@@ -110,42 +110,42 @@ export default function Home() {
 
   return (
     <StyledContainer backgroundPosition={['10% -250px', '20% -250px', '50% -250px', '100% -250px']}>
-      <Col width={1} maxWidth={2048} margin="0 auto">
+      <Col maxWidth={2048} margin={['0 20px']} alignItems={['center', 'center', 'center', 'flex-start']}>
         <Row>
-          <StyledText as="h2" fontSize={['32px', '46px', '80px', '96px']}>
+          <StyledText as="h2" fontSize={['46px', '80px', '80px', '96px']}>
             CRYPTOCURRENCY <br/>GLOBAL <ColorWrap color="primary">REVOLUTION</ColorWrap>
           </StyledText>
         </Row>
 
         <Row>
           <InfoBox
-            width={1 / 4}
+            width={1 / 2}
             heading={lockedSupplyText}
             subtitle="wBTC LOCKED"
           />
           <InfoBox
-            width={1 / 4}
+            width={1 / 2}
             heading={totalSupplyText}
             subtitle="TOTAL SUPPLY"
           />
         </Row>
 
         <Row marginTop={56}>
-          <InfoBox width={1 / 2} heading={liraValue} subtitle="LIRA INTRINSIC VALUE"/>
+          <InfoBox width={1} heading={liraValue} subtitle="LIRA INTRINSIC VALUE"/>
         </Row>
 
-        <Row marginTop={120}>
+        <Row marginTop={120} display={['none','none','none','flex']}>
           <img src={button} alt="Buy LIRA" style={{opacity: 0.3}}/>
         </Row>
       </Col>
 
-      <Col width={1} maxWidth={2048} margin="0 auto" marginTop={160} marginBottom={80}>
+      <Col maxWidth={2048} margin={['0 20px']} alignItems={['center', 'center', 'center', 'flex-start']}>
         <Row>
-          <Typography as="h3" color="white" marginY={32}>
+          <StyledText as="h3" fontSize={['40px', '46px', '46px', '80px']}>
             <ColorWrap color="primary">"</ColorWrap><br/>Join the <ColorWrap color="primary">revolution</ColorWrap>
-          </Typography>
+          </StyledText>
         </Row>
-        <Col width={4 / 5}>
+        <Col width={[1, 1, 1, 4 / 5]}>
           <Typography color="white" fontSize="body" marginY={32}>
             Satoshi LIRA presents a revolutionary project within the cryptocurrency sector, offering economic and
             political independence through decentralized finance. By leveraging liquidity provision as our core

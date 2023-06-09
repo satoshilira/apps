@@ -15,23 +15,23 @@ export function Countdown({date}: CountdownProps) {
     }
 
     return (
-      <Row justifyContent="center">
-        <Col marginX={32}>
+      <Row flexDirection={['column', 'column', 'row', 'row']} justifyContent="center" alignItems="center">
+        <Col marginX={32} width={110} pb={[10, 10, 10, 0]}>
           <Typography color="white" fontFamily="secondary" fontSize="h4" fontWeight="bold" lineHeight="60px" margin={0}>{days}</Typography>
           <Typography color="white" fontSize="subtitle" margin="0 0 10px" lineHeight="30px">Days</Typography>
           <StyledRectangle width={92} height={4} color="horizontalGreenToCyan" opacity={0.6} />
         </Col>
-        <Col marginX={32}>
+        <Col marginX={32} width={110} pb={[10, 10, 10, 0]}>
           <Typography color="white" fontFamily="secondary" fontSize="h4" fontWeight="bold" lineHeight="60px" margin={0}>{hours}</Typography>
           <Typography color="white" fontSize="subtitle" margin="0 0 10px" lineHeight="30px">Hours</Typography>
           <StyledRectangle width={92} height={4} color="horizontalGreenToCyan" opacity={0.6} />
         </Col>
-        <Col marginX={32}>
+        <Col marginX={32} width={110} pb={[10, 10, 10, 0]}>
           <Typography color="white" fontFamily="secondary" fontSize="h4" fontWeight="bold" lineHeight="60px" margin={0}>{minutes}</Typography>
           <Typography color="white" fontSize="subtitle" margin="0 0 10px" lineHeight="30px">Minutes</Typography>
           <StyledRectangle width={92} height={4} color="horizontalGreenToCyan" opacity={0.6} />
         </Col>
-        <Col marginX={32}>
+        <Col marginX={32} width={110}>
           <Typography color="primary" fontFamily="secondary" fontSize="h4" fontWeight="bold" lineHeight="60px" margin={0}>{seconds}</Typography>
           <Typography color="white" fontSize="subtitle" margin="0 0 10px" lineHeight="30px">Sec</Typography>
           <StyledRectangle width={92} height={4} color="horizontalGreenToCyan" opacity={0.6} />
