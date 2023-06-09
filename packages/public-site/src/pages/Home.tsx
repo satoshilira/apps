@@ -110,9 +110,9 @@ export default function Home() {
 
   return (
     <StyledContainer backgroundPosition={['10% -250px', '20% -250px', '50% -250px', '100% -250px']}>
-      <Col maxWidth={2048} margin={['0 20px']} alignItems={['center', 'center', 'center', 'flex-start']}>
+      <Col maxWidth={2048} margin={['0 20px', '0 20px', '0 20px', '0 auto']} alignItems={['center', 'center', 'center', 'flex-start']}>
         <Row>
-          <StyledText as="h2" fontSize={['46px', '80px', '80px', '96px']}>
+          <StyledText as="h2" fontSize={['32px', '46px', '80px', '96px']}>
             CRYPTOCURRENCY <br/>GLOBAL <ColorWrap color="primary">REVOLUTION</ColorWrap>
           </StyledText>
         </Row>
@@ -141,7 +141,7 @@ export default function Home() {
 
       <Col maxWidth={2048} margin={['0 20px']} alignItems={['center', 'center', 'center', 'flex-start']}>
         <Row>
-          <StyledText as="h3" fontSize={['40px', '46px', '46px', '80px']}>
+          <StyledText as="h3" fontSize={['32px', '46px', '46px', '80px']}>
             <ColorWrap color="primary">"</ColorWrap><br/>Join the <ColorWrap color="primary">revolution</ColorWrap>
           </StyledText>
         </Row>
