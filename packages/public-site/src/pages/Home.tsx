@@ -110,7 +110,7 @@ export default function Home() {
 
   return (
     <StyledContainer backgroundPosition={['10% -250px', '20% -250px', '50% -250px', '100% -250px']}>
-      <Col maxWidth={2048} margin={['0 20px', '0 20px', '0 20px', '0 auto']} alignItems={['center', 'center', 'center', 'flex-start']}>
+      <Col maxWidth={2048} margin={['0 20px', '0 20px', '0 20px', '0 20px']} alignItems={['center', 'center', 'center', 'flex-start']}>
         <Row>
           <StyledText as="h2" fontSize={['32px', '46px', '80px', '96px']}>
             CRYPTOCURRENCY <br/>GLOBAL <ColorWrap color="primary">REVOLUTION</ColorWrap>
