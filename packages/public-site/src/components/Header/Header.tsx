@@ -44,8 +44,8 @@ const StyledButton = styled(Row)`
 
 export function Header() {
   return (
-    <Row height={176} maxWidth={2048} margin={['20px 20px 0', '0 20px', '0 20px', '0 20px']} flexDirection={['column', 'row', 'row', 'row']} justifyContent="space-between" alignItems="center">
-      <Row width={1 / 3}>
+    <Row height={176} margin={['20px 20px 0', '0 20px', '0 20px', '0 20px']} flexDirection={['column', 'row', 'row', 'row']} justifyContent="space-between" alignItems="center">
+      <Row width={[1, 1 / 3]} justifyContent={['center', 'flex-start']}>
         <NavLink to="/">
           <img src={logo} height={64} alt="satoshi lira logo"/>
         </NavLink>
@@ -72,7 +72,7 @@ export function Header() {
       </Row>
 
       <Row width={1 / 3} justifyContent="flex-end" display={['none','none','none','flex']}>
-        <NavLink to="/sacrifice">
+        <NavLink to="/">
           <img src={button} height={64} alt="Buy LIRA" style={{opacity: 0.3}}/>
         </NavLink>
       </Row>

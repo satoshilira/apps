@@ -55,7 +55,7 @@ export const StyledRectangle = styled(Row)<StyledRectangleProps>`
 `
 
 export interface InfoBoxProps {
-  width: number
+  width: number | number[]
   heading: string | ReactElement | null
   subtitle: string
 }
@@ -110,21 +110,21 @@ export default function Home() {
 
   return (
     <StyledContainer backgroundPosition={['10% -250px', '20% -250px', '50% -250px', '100% -250px']}>
-      <Col maxWidth={2048} margin={['0 20px', '0 20px', '0 20px', '0 20px']} alignItems={['center', 'center', 'center', 'flex-start']}>
+      <Col maxWidth={2048} margin={['0 20px', '0 20px', '0 20px', '0 20px']} alignItems="flex-start">
         <Row>
           <StyledText as="h2" fontSize={['32px', '46px', '80px', '96px']}>
             CRYPTOCURRENCY <br/>GLOBAL <ColorWrap color="primary">REVOLUTION</ColorWrap>
           </StyledText>
         </Row>
 
-        <Row>
+        <Row width={[1, 3 / 4, 1 / 2]} flexDirection={['column', 'row', 'row', 'row']}>
           <InfoBox
-            width={1 / 2}
+            width={[1, 1 / 2]}
             heading={lockedSupplyText}
             subtitle="wBTC LOCKED"
           />
           <InfoBox
-            width={1 / 2}
+            width={[1, 1 / 2]}
             heading={totalSupplyText}
             subtitle="TOTAL SUPPLY"
           />
