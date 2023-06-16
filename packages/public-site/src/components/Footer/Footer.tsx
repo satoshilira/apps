@@ -1,5 +1,4 @@
 import logo from '../../img/satoshi-logo.svg'
-import facebook from '../../img/facebook.svg'
 import twitter from '../../img/twitter.svg'
 import discord from '../../img/discord.svg'
 
@@ -67,9 +66,6 @@ export function Footer() {
             </NavLink>
           </Row>
           <Row >
-            {/* <NavLink to="/" style={{margin:"16px"}}>
-              <img src={facebook} height={28} alt="satoshi lira logo"/>
-            </NavLink> */}
             <a href='https://twitter.com/Satoshi_LIRA' target="_blank" rel="noreferrer" style={{margin:"16px"}}>
               <img src={twitter} height={28} alt="satoshi lira twitter"/>
             </a>
