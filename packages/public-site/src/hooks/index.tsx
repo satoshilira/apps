@@ -1,9 +1,9 @@
-import {useAccount, useConnect, useContractRead, useDisconnect} from 'wagmi';
+import { useAccount, useConnect, useContractRead, useContractWrite, useDisconnect } from 'wagmi';
 import { InjectedConnector } from 'wagmi/connectors/injected'
 import lira from '@satoshi-lira/deployments/arbitrum/LIRA.json'
 import sacrifice from '@satoshi-lira/deployments/arbitrumGoerli/LIRASacrifice.json'
-import {BigNumber} from 'ethers';
-import {EthereumAddress} from '../types';
+import { BigNumber } from 'ethers';
+import { EthereumAddress } from '../types';
 
 export function useWallet() {
   const { address, isConnected } = useAccount()
@@ -23,17 +23,15 @@ export function useWallet() {
 }
 
 export function useLira() {
-  const address = '0xA07ac236fEBc390c798504E927DC8D6a4e1FfcA3'
-
-  const {data: totalSupply, isLoading: isLoadingTotalSupply} = useContractRead({
+  const { data: totalSupply, isLoading: isLoadingTotalSupply } = useContractRead({
     abi: lira.abi,
-    address,
+    address: lira.address as EthereumAddress,
     functionName: 'totalSupply'
   })
 
-  const {data: lockedSupply, isLoading: isLoadingLockedSupply} = useContractRead({
+  const { data: lockedSupply, isLoading: isLoadingLockedSupply } = useContractRead({
     abi: lira.abi,
-    address,
+    address: lira.address as EthereumAddress,
     functionName: 'lockedSupply'
   })
 
@@ -49,13 +47,13 @@ export function useLira() {
 }
 
 export function useSacrifice() {
-  const {data: started, isLoading: isLoadingStarted} = useContractRead({
+  const { data: started, isLoading: isLoadingStarted } = useContractRead({
     abi: sacrifice.abi,
     address: sacrifice.address as EthereumAddress,
     functionName: 'started',
   })
 
-  const {data: round, isLoading: isLoadingRound, refetch: refetchRound} = useContractRead({
+  const { data: round, isLoading: isLoadingRound, refetch: refetchRound } = useContractRead({
     abi: sacrifice.abi,
     address: sacrifice.address as EthereumAddress,
     functionName: 'round',
@@ -63,10 +61,21 @@ export function useSacrifice() {
     enabled: !!started,
   })
 
-  const {data: sacrificableAmount, isLoading: isLoadingSacrificableAmount} = useContractRead({
+  const { data: sacrificable, isLoading: isLoadingSacrificable } = useContractRead({
     abi: sacrifice.abi,
     address: sacrifice.address as EthereumAddress,
-    functionName: 'sacrificableAmount',
+    functionName: 'sacrificable',
+  })
+
+  const {
+    data: sacrificeTransaction,
+    isLoading: isLoadingSacrifceTransacion,
+    isSuccess: sacrificeTransactionSuccess,
+    write: writeSacrificeTransaction
+  } = useContractWrite({
+    abi: sacrifice.abi,
+    address: sacrifice.address as EthereumAddress,
+    functionName: 'sacrifice',
   })
 
   return {
@@ -82,8 +91,13 @@ export function useSacrifice() {
     // @ts-ignore
     end: new Date(Number(round?.end) * 1000) || 0,
     // @ts-ignore
-    sacrificable: Number(sacrificableAmount) - Number(round?.sacrified),
-    isLoadingSacrifice: !(!isLoadingSacrificableAmount && !isLoadingRound),
+    sacrificable: Number(sacrificable) - Number(round?.sacrified),
+    isLoadingSacrifice: !(!isLoadingSacrificable && !isLoadingRound),
     refetchRound,
+
+    sacrificeTransaction,
+    isLoadingSacrifceTransacion,
+    sacrificeTransactionSuccess,
+    writeSacrificeTransaction,
   }
 }
