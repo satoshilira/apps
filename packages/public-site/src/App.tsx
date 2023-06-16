@@ -2,7 +2,7 @@ import {ThemeProvider} from 'styled-components';
 import {createPublicClient, http} from 'viem'
 import {arbitrum, arbitrumGoerli} from 'viem/chains';
 import {createConfig, WagmiConfig} from 'wagmi'
-import {Header} from './components';
+import {Footer, Header} from './components';
 import {useLira, useSacrifice, useWallet} from './hooks';
 import theme from './theme';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
@@ -35,6 +35,7 @@ export default function App() {
             <Route path='/sacrifice' element={<Sacrifice/>}/>
             <Route path='/blockchain-data' element={<BlockchainData/>}/>
           </Routes>
+          <Footer/>
         </BrowserRouter>
       </WagmiConfig>
     </ThemeProvider>
