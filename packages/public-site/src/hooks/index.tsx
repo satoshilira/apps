@@ -1,14 +1,12 @@
 import {useAccount, useConnect, useContractRead, useDisconnect} from 'wagmi';
 import { InjectedConnector } from 'wagmi/connectors/injected'
-import lira from './abi/arbitrum/lira.json'
+import lira from '@satoshi-lira/deployments/arbitrum/LIRA.json'
 import sacrifice from '@satoshi-lira/deployments/arbitrumGoerli/LIRASacrifice.json'
-import {BigNumber} from "ethers";
-import {EthereumAddress} from "../types";
-import {useCallback} from "react";
+import {BigNumber} from 'ethers';
+import {EthereumAddress} from '../types';
 
 export function useWallet() {
   const { address, isConnected } = useAccount()
-  console.log(address, isConnected)
 
   const { connect } = useConnect({
     connector: new InjectedConnector(),
@@ -28,13 +26,13 @@ export function useLira() {
   const address = '0xA07ac236fEBc390c798504E927DC8D6a4e1FfcA3'
 
   const {data: totalSupply, isLoading: isLoadingTotalSupply} = useContractRead({
-    abi: lira,
+    abi: lira.abi,
     address,
     functionName: 'totalSupply'
   })
 
   const {data: lockedSupply, isLoading: isLoadingLockedSupply} = useContractRead({
-    abi: lira,
+    abi: lira.abi,
     address,
     functionName: 'lockedSupply'
   })
