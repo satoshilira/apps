@@ -1,4 +1,4 @@
-import {useNetwork} from "wagmi";
+import {useNetwork} from 'wagmi';
 
 export function useWagmiNetwork() {
   const { chain } = useNetwork()

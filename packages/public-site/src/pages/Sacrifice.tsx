@@ -17,8 +17,6 @@ export default function Sacrifice() {
         <>
           <Typography color="white">Satoshi LIRA Sacrifice</Typography>
           <Countdown date={end} />
-          <Typography as="h5" color="white">Bonus: {bonus}%</Typography>
-          <Typography as="h5" color="white">{sacrified}/{sacrificable}</Typography>
         </>
       ) : (
         <>

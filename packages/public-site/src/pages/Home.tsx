@@ -7,30 +7,16 @@ import {ColorWrap, Countdown} from '../components';
 import {Row} from '../components/Row';
 import {useLira} from '../hooks';
 import {formatUint256} from '../utils';
-import theme, {Colors} from '../theme';
+import {Colors} from '../theme';
 import daVinciLira from '../img/da-vinci-lira.svg';
 import button from '../img/button.svg';
 import {background, BackgroundProps, fontSize, FontSizeProps} from 'styled-system';
 
 const StyledContainer = styled(Col)<BackgroundProps>`
-  background-image: url(${daVinciLira});
-  background-repeat: no-repeat;
-
+  background: url(${daVinciLira}) no-repeat;
   background-position-y: -250px;
 
-  // &:before {
-  //   content: "";
-  //   position: absolute;
-  //   top: 0;
-  //   right: 0;
-  //   width: 1546px;
-  //   height: 1304px;
-  //   background-image: url(${daVinciLira});
-  //   background-repeat: no-repeat;
-  //   background-position: right center;
-  //   z-index: -1;
-  // }
-  ${background}
+  ${background};
 `
 
 const StyledText = styled.p<FontSizeProps>`
