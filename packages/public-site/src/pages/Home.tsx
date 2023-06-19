@@ -9,10 +9,9 @@ import {useLira} from '../hooks';
 import {formatUint256} from '../utils';
 import {Colors} from '../theme';
 import daVinciLira from '../img/da-vinci-lira.svg';
-import presaleInfoCardGradStep from '../img/presale-info-card.svg';
-import oneCardImage from '../img/one.svg';
-import twoCardImage from '../img/two.svg';
-import threeCardImage from '../img/three.svg';
+import stepOneCardImage from '../img/lira-pre-sale-step-1.png';
+import stepTwoCardImage from '../img/lira-pre-sale-step-2.png';
+import stepThreeCardImage from '../img/lira-pre-sale-step-3.png';
 import button from '../img/button.svg';
 import {background, BackgroundProps, fontSize, FontSizeProps} from 'styled-system';
 
@@ -85,7 +84,7 @@ export function TextWithVariation({text, value, positive = true}: TextWithVariat
 export const PreSaleInfoCard = styled(Row)<any>`
   width: ${props => props.width}px;
   height: ${props => props.height}px;
-  background: url(${presaleInfoCardGradStep});
+  background: url(${props => props.background});
   opacity: ${props => props.opacity || 1};
   left: -17.29%;
   right: -71.04%;
@@ -167,11 +166,8 @@ export default function Home() {
 
       <Col maxWidth={2048} margin={['0 20px']} marginY={150}>
         <Row alignItems={['center']} justifyContent="space-evenly">
-          <PreSaleInfoCard alignItems={'start'} flexDirection={'column'} width={'480px'} height={'320px'}>
-            <Col width={['1 / 3']} >
-              <img src={oneCardImage} width={'169px'} height={'210px'} style={{opacity: 0.5, 'marginTop': '100%'}} alt="Number One"/>
-            </Col>
-            <Col width={['2 / 3']} flexGrow={'60px'}>
+          <PreSaleInfoCard alignItems={'start'} flexDirection={'column'} width={'480px'} height={'378px'} background={stepOneCardImage}>
+            <Col marginLeft={'100px'}>
               <Typography fontFamily={'primary'} fontWeight={700} color="primary" fontSize='subtitle' marginY={50}>
                 Lira Presale
               </Typography>
@@ -179,15 +175,12 @@ export default function Home() {
                 The Satoshi Lira presale and its tokens, LIRA/TBg/TBs/TBb and YOSHI.
               </Typography>
               <Typography color="secondary" fontSize='p' marginY={40}>
-                view more
+                view more &#62;
               </Typography>
             </Col>
           </PreSaleInfoCard>
-          <PreSaleInfoCard alignItems={'start'} flexDirection={'column'} width={'480px'} height={'320px'}>
-            <Col width={['1 / 3']}>
-              <img src={twoCardImage} width={'169px'} height={'210px'} style={{opacity: 0.5, 'marginTop': '100%'}} alt="Number Two"/>
-            </Col>
-            <Col width={['2 / 3']} flexGrow={'60px'}>
+          <PreSaleInfoCard alignItems={'start'} flexDirection={'column'} width={'480px'} height={'378px'} background={stepTwoCardImage}>
+            <Col marginLeft={'100px'}>
               <Typography fontFamily={'primary'} fontWeight={700} color="primary" fontSize='subtitle' marginY={50}>
                 Sacrifice Phase
               </Typography>
@@ -195,15 +188,12 @@ export default function Home() {
                 The Satoshi Lira presale and its tokens, LIRA/TBg/TBs/TBb and YOSHI.
               </Typography>
               <Typography color="secondary" fontSize='p' marginY={40}>
-                view more
+                view more &#62;
               </Typography>
             </Col>
           </PreSaleInfoCard>
-          <PreSaleInfoCard alignItems={'start'} width={'480px'} height={'320px'}>
-            <Col width={['1 / 3']}>
-              <img src={threeCardImage} width={'169px'} height={'210px'} style={{opacity: 0.5, 'marginTop': '100%'}} alt="Number Three"/>
-            </Col>
-            <Col width={['2 / 3']} flexGrow={'60px'}>
+          <PreSaleInfoCard alignItems={'start'} width={'480px'} height={'378px'} background={stepThreeCardImage}>
+            <Col marginLeft={'100px'}>
               <Typography fontFamily={'primary'} fontWeight={700} color="primary" fontSize='subtitle' marginY={50}>
                 Reward phase of Sacrifice
               </Typography>
@@ -211,7 +201,7 @@ export default function Home() {
                 LIRA/TBg/TBs/TBb and YOSHI.
               </Typography>
               <Typography color="secondary" fontSize='p' marginY={40}>
-                view more
+                view more &#62;
               </Typography>
             </Col>
           </PreSaleInfoCard>
