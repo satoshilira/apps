@@ -143,10 +143,6 @@ export default function Home() {
           </Typography>
         </Col>
       </Col>
-
-      <Col marginY={80}>
-        <Countdown date={new Date('06/18/2023')} />
-      </Col>
     </StyledContainer>
   )
 }
