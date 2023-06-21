@@ -9,6 +9,9 @@ import {useLira} from '../hooks';
 import {formatUint256} from '../utils';
 import {Colors} from '../theme';
 import daVinciLira from '../img/da-vinci-lira.svg';
+import stepOneCardImage from '../img/lira-pre-sale-step-1.png';
+import stepTwoCardImage from '../img/lira-pre-sale-step-2.png';
+import stepThreeCardImage from '../img/lira-pre-sale-step-3.png';
 import button from '../img/button.svg';
 import {background, BackgroundProps, fontSize, FontSizeProps} from 'styled-system';
 
@@ -78,6 +81,19 @@ export function TextWithVariation({text, value, positive = true}: TextWithVariat
   )
 }
 
+export const PreSaleInfoCard = styled(Row)<any>`
+  width: ${props => props.width}px;
+  height: ${props => props.height}px;
+  background: url(${props => props.background});
+  opacity: ${props => props.opacity || 1};
+  left: -17.29%;
+  right: -71.04%;
+  top: -11.25%;
+  bottom: -35.94%;
+  border-left: 10px;
+  border-top-left-radius: 30;
+`
+
 export default function Home() {
   const {totalSupply, lockedSupply, isLoadingTotalSupply, isLoadingLockedSupply, intrinsicValue} = useLira()
 
@@ -143,6 +159,55 @@ export default function Home() {
           </Typography>
         </Col>
       </Col>
+
+      <Col marginY={80}>
+        <Countdown date={new Date('06/18/2023')} />
+      </Col>
+
+      <Col maxWidth={2048} margin={['0 20px']} marginY={150}>
+        <Row alignItems={['center']} justifyContent="space-evenly">
+          <PreSaleInfoCard alignItems={'start'} flexDirection={'column'} width={'480px'} height={'378px'} background={stepOneCardImage}>
+            <Col marginLeft={'100px'}>
+              <Typography fontFamily={'primary'} fontWeight={700} color="primary" fontSize='subtitle' marginY={50}>
+                Lira Presale
+              </Typography>
+              <Typography fontWeight={700} color="white" fontSize='p' marginY={20}>
+                The Satoshi Lira presale and its tokens, LIRA/TBg/TBs/TBb and YOSHI.
+              </Typography>
+              <Typography color="secondary" fontSize='p' marginY={40}>
+                view more &#62;
+              </Typography>
+            </Col>
+          </PreSaleInfoCard>
+          <PreSaleInfoCard alignItems={'start'} flexDirection={'column'} width={'480px'} height={'378px'} background={stepTwoCardImage}>
+            <Col marginLeft={'100px'}>
+              <Typography fontFamily={'primary'} fontWeight={700} color="primary" fontSize='subtitle' marginY={50}>
+                Sacrifice Phase
+              </Typography>
+              <Typography fontWeight={700} color="white" fontSize='p' marginY={20}>
+                The Satoshi Lira presale and its tokens, LIRA/TBg/TBs/TBb and YOSHI.
+              </Typography>
+              <Typography color="secondary" fontSize='p' marginY={40}>
+                view more &#62;
+              </Typography>
+            </Col>
+          </PreSaleInfoCard>
+          <PreSaleInfoCard alignItems={'start'} width={'480px'} height={'378px'} background={stepThreeCardImage}>
+            <Col marginLeft={'100px'}>
+              <Typography fontFamily={'primary'} fontWeight={700} color="primary" fontSize='subtitle' marginY={50}>
+                Reward phase of Sacrifice
+              </Typography>
+              <Typography fontWeight={700} color="white" fontSize='p' marginY={20}>
+                LIRA/TBg/TBs/TBb and YOSHI.
+              </Typography>
+              <Typography color="secondary" fontSize='p' marginY={40}>
+                view more &#62;
+              </Typography>
+            </Col>
+          </PreSaleInfoCard>
+        </Row>
+      </Col>
+
     </StyledContainer>
   )
 }
