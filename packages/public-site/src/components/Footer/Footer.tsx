@@ -3,8 +3,8 @@ import twitter from '../../img/twitter.svg'
 import discord from '../../img/discord.svg'
 
 import { NavLink } from "react-router-dom";
-import {Row} from "../Row";
-import {Col} from "../Col";
+import { Row } from "../Row";
+import { Col } from "../Col";
 
 import styled from "styled-components";
 import { Typography } from "../Typography";
@@ -58,47 +58,55 @@ const StyledFooterText = styled(Typography)`
 export function Footer() {
   return (
     <Col margin={['20px 20px 0']} marginTop={['80px']}>
-      <Row width={['100%']} marginBottom={['50px']} justifyContent={['space-around']}>
-        <Col width={[1 / 3]} flexDirection={['column']}>
+      <Row width={['100%']} marginBottom={['50px']} flexDirection={['column', 'row', 'row', 'row']} justifyContent="space-around">
+        <Col width={[1, 1 / 3]} flexDirection={['column']} justifyContent={'center'}>
           <Row marginBottom={['50px']} >
             <NavLink to="/">
-              <img src={logo} height={66} alt="satoshi lira logo"/>
+              <img src={logo} height={66} alt="satoshi lira logo" />
             </NavLink>
           </Row>
           <Row >
-            <a href='https://twitter.com/Satoshi_LIRA' target="_blank" rel="noreferrer" style={{margin:"16px"}}>
-              <img src={twitter} height={28} alt="satoshi lira twitter"/>
+            <a href='https://twitter.com/Satoshi_LIRA' target="_blank" rel="noreferrer" style={{ margin: "16px" }}>
+              <img src={twitter} height={28} alt="satoshi lira twitter" />
             </a>
-            <a href='https://discord.gg/fDRBajCB9V' target="_blank" rel="noreferrer" style={{margin:"16px"}}>
-              <img src={discord} height={28} alt="satoshi lira discord"/>
+            <a href='https://discord.gg/fDRBajCB9V' target="_blank" rel="noreferrer" style={{ margin: "16px" }}>
+              <img src={discord} height={28} alt="satoshi lira discord" />
             </a>
           </Row>
         </Col>
 
-        <Col width={[1 / 3]} alignItems={'stretch'}>
+        <Col width={[1, 1 / 3]} alignItems={'stretch'}>
           <StyledFooterTitle>
             SECTIONS
           </StyledFooterTitle>
 
           <Row>
             <Col width={[1 / 2]}>
+              <a href='https://whitepaper.satoshilira.io' target="_blank" rel="noreferrer">
+                <StyledFooterItem>
+                  White Paper
+                </StyledFooterItem>
+              </a>
+            </Col>
+
+            {/* <Col width={[1 / 2]}>
               <NavLink to="/">
                 <StyledFooterItem>
                   Ecosystem
                 </StyledFooterItem>
               </NavLink>
-            </Col>
+            </Col> */}
 
-            <Col width={[1 / 2]}>
+            {/* <Col width={[1 / 2]}>
               <NavLink to="/">
                 <StyledFooterItem>
                   Token Economics
                 </StyledFooterItem>
               </NavLink>
-            </Col>
+            </Col> */}
           </Row>
 
-          <Row>
+          {/* <Row>
             <Col width={[1 / 2]}>
               <NavLink to="/">
                 <StyledFooterItem>
@@ -114,9 +122,9 @@ export function Footer() {
                 </StyledFooterItem>
               </a>
             </Col>
-          </Row>
+          </Row> */}
 
-          <Row>
+          {/* <Row>
             <Col width={[1 / 2]}>
               <NavLink to="/">
                 <StyledFooterItem>
@@ -124,10 +132,10 @@ export function Footer() {
                 </StyledFooterItem>
               </NavLink>
             </Col>
-          </Row>
+          </Row> */}
         </Col>
 
-        <Col width={[1 / 3]}>
+        <Col width={[1, 1 / 3]}>
           <StyledFooterTitle>
             INFO
           </StyledFooterTitle>
@@ -141,16 +149,16 @@ export function Footer() {
               </NavLink>
             </Col>
 
-            <Col width={[1 / 2]}>
+            {/* <Col width={[1 / 2]}>
               <NavLink to="/">
                 <StyledFooterItem>
                   Blog
                 </StyledFooterItem>
               </NavLink>
-            </Col>
+            </Col> */}
           </Row>
 
-          <Row>
+          {/* <Row>
             <Col width={[1 / 2]}>
                 <NavLink to="/">
                     <StyledFooterItem>
@@ -166,9 +174,9 @@ export function Footer() {
                 </StyledFooterItem>
               </NavLink>
             </Col>
-          </Row>
+          </Row> */}
 
-          <Row>
+          {/* <Row>
             <Col width={[1 / 2]}>
               <NavLink to="/">
                 <StyledFooterItem>
@@ -176,9 +184,9 @@ export function Footer() {
                 </StyledFooterItem>
               </NavLink>
             </Col>
-          </Row>
+          </Row> */}
 
-          <Row>
+          {/* <Row>
             <Col width={[1 / 2]}>
               <NavLink to="/">
                 <StyledFooterItem>
@@ -186,16 +194,16 @@ export function Footer() {
                 </StyledFooterItem>
               </NavLink>
             </Col>
-          </Row>
+          </Row> */}
         </Col>
       </Row>
 
-      <Row width={'100%'} marginBottom={['88px']}>
+      <Row width={'100%'}>
         <Col width={[1 / 2]} >
-          <StyledFooterText>©2023 Satoshi LIRA. All rights reserved</StyledFooterText> 
+          <StyledFooterText>©2023 Satoshi LIRA. All rights reserved</StyledFooterText>
         </Col>
 
-        <Col width={[1 / 2]} alignItems={['right']}>
+        {/* <Col width={[1 / 2]} alignItems={['right']}>
           <Row justifyContent={'end'}>
             <a href='https://whitepaper.satoshilira.io' target="_blank" rel="noreferrer">
               <StyledFooterItem marginRight={53}>
@@ -215,7 +223,7 @@ export function Footer() {
               </StyledFooterItem>
             </NavLink>
           </Row>
-        </Col>
+        </Col> */}
       </Row>
     </Col>
   )

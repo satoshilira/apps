@@ -1,13 +1,14 @@
 import { ChangeEvent, useState } from 'react';
 import { Typography } from '../components/Typography';
-import { useSacrifice } from '../hooks';
+import { useSacrifice, useWallet } from '../hooks';
 import { Col } from '../components/Col';
 import { Countdown } from '../components';
 import { useWagmiNetwork } from '../hooks/useChain';
 import { FontSizeProps, fontSize } from 'styled-system';
 import styled from 'styled-components';
-import { BigNumber } from 'ethers';
 import { Row } from '../components/Row';
+import metamask from '../img/metamask-fox.svg';
+import { ConnectButton } from '../components/ConnectButton/ConnectButton';
 
 const StyledText = styled.p<FontSizeProps>`
   color: ${props => props.theme.colors.white};
@@ -20,6 +21,25 @@ const StyledText = styled.p<FontSizeProps>`
 const StyledInput = styled.input`
   width: 100%;
   height: 30px;
+`
+
+const StyledButton = styled.button`
+  display: flex;
+  max-width: 280px;
+  align-items: center;
+  background-color: transparent;
+  padding: 8px 10px;
+  border: 1px ${props => props.theme.colors.primary} solid;
+  border-radius: 50px;
+  cursor: pointer;
+
+  & > img {
+    margin-right: 8px;
+  }
+
+  &:active {
+    border: 1px ${props => props.theme.colors.secondary} solid;
+  }
 `
 
 export default function Sacrifice() {
@@ -70,8 +90,9 @@ export default function Sacrifice() {
   }
 
   return (
-    <Col>
+    <Col style={{minHeight: '100vh'}}>
       <StyledText as="h2" fontSize={['32px', '46px', '80px', '96px']} color="white">Satoshi LIRA Sacrifice</StyledText>
+      <ConnectButton />
       {started ? (
         <>
           <Col marginY={80} style={{textAlign: 'center', alignItems: 'center'}}>

@@ -141,7 +141,7 @@ export default function Home() {
         </Row>
       </Col>
 
-      <Col maxWidth={2048} margin={['0 20px']} alignItems={['center', 'center', 'center', 'flex-start']}>
+      <Col maxWidth={2048} margin={['0 20px 180px']} alignItems={['center', 'center', 'center', 'flex-start']}>
         <Row>
           <StyledText as="h3" fontSize={['32px', '46px', '46px', '80px']}>
             <ColorWrap color="primary">"</ColorWrap><br/>Join the <ColorWrap color="primary">revolution</ColorWrap>
@@ -207,6 +207,7 @@ export default function Home() {
           </PreSaleInfoCard>
         </Row>
       </Col>
+
     </StyledContainer>
   )
 }
