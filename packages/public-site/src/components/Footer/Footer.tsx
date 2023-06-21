@@ -58,8 +58,8 @@ const StyledFooterText = styled(Typography)`
 export function Footer() {
   return (
     <Col margin={['20px 20px 0']} marginTop={['80px']}>
-      <Row width={['100%']} marginBottom={['50px']} justifyContent={['space-around']}>
-        <Col width={[1 / 3]} flexDirection={['column']}>
+      <Row width={['100%']} marginBottom={['50px']} flexDirection={['column', 'row', 'row', 'row']} justifyContent="space-around">
+        <Col width={[1, 1 / 3]} flexDirection={['column']} justifyContent={'center'}>
           <Row marginBottom={['50px']} >
             <NavLink to="/">
               <img src={logo} height={66} alt="satoshi lira logo" />
@@ -75,7 +75,7 @@ export function Footer() {
           </Row>
         </Col>
 
-        <Col width={[1 / 3]} alignItems={'stretch'}>
+        <Col width={[1, 1 / 3]} alignItems={'stretch'}>
           <StyledFooterTitle>
             SECTIONS
           </StyledFooterTitle>
@@ -135,7 +135,7 @@ export function Footer() {
           </Row> */}
         </Col>
 
-        <Col width={[1 / 3]}>
+        <Col width={[1, 1 / 3]}>
           <StyledFooterTitle>
             INFO
           </StyledFooterTitle>
