@@ -164,7 +164,7 @@ export default function Home() {
         <Countdown date={new Date('06/18/2023')} />
       </Col>
 
-      <Col maxWidth={2048} margin={['0 20px']} marginY={150}>
+      <Col maxWidth={2048} margin={['0px 20px 270px 20px']}>
         <Row justifyContent={['center']} marginBottom={'3%'}>
           <StyledText as="h3" fontSize={['32px', '48px']}>
             Pre-sale <ColorWrap color="primary">Info</ColorWrap>
@@ -186,20 +186,20 @@ export default function Home() {
           </PreSaleInfoCard>
           <PreSaleInfoCard alignItems={'start'} flexDirection={'column'} width={'480px'} height={'378px'} background={stepTwoCardImage} marginBottom={['25px', '0px', '0px', '0px']} paddingRight={['15px']}>
             <Col marginLeft={'120px'}>
-              <Typography fontFamily={'primary'} fontWeight={700} color="primary" fontSize='subtitle' marginTop={'40px'} marginBottom={'10px'}>
+              <Typography fontFamily={'primary'} fontWeight={700} color="primary" fontSize='subtitle' marginY={50}>
                 Sacrifice Phase
               </Typography>
-              <Typography fontWeight={700} color="white" fontSize='p' marginY={20}>
-                The sacrifice phase consists of three sub-phases, each lasting one week, with a maximum  amount of 1 wBTC that can be sacrificed per sub-phase. The pricing structure for each sub-phase starts from 1 LIRA = 1 Satoshi for the first weak, 1 LIRA = 1.6 Satoshi for the second week and 1 LIRA = 2 Satoshi for the third week.
+              <Typography fontWeight={700} color="white" fontSize='p' marginY={10}>
+                The sacrifice phase consists of three sub-phases, each lasting one week, with a maximum  amount of 1 wBTC that can be sacrificed per sub-phase.
               </Typography>
-              {/* <Typography color="secondary" fontSize='p' marginY={40}>
+              <Typography color="secondary" fontSize='p' marginY={20}>
                 view more &#62;
-              </Typography> */}
+              </Typography>
             </Col>
           </PreSaleInfoCard>
           <PreSaleInfoCard alignItems={'start'} width={'480px'} height={'378px'} background={stepThreeCardImage} marginBottom={['25px', '0px', '0px', '0px']}>
             <Col marginLeft={'100px'}>
-              <Typography fontFamily={'primary'} fontWeight={700} color="primary" fontSize='subtitle' marginY={50}>
+              <Typography fontFamily={'primary'} fontWeight={700} color="primary" fontSize='subtitle' marginY={50} marginBottom={'25px'}>
                 Reward phase of Sacrifice
               </Typography>
               <Typography fontWeight={700} color="white" fontSize='p' marginY={20}>
