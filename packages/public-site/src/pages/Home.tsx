@@ -165,8 +165,13 @@ export default function Home() {
       </Col>
 
       <Col maxWidth={2048} margin={['0 20px']} marginY={150}>
-        <Row alignItems={['center']} justifyContent="space-evenly">
-          <PreSaleInfoCard alignItems={'start'} flexDirection={'column'} width={'480px'} height={'378px'} background={stepOneCardImage}>
+        <Row justifyContent={['center']} marginBottom={'3%'}>
+          <StyledText as="h3" fontSize={['32px', '48px']}>
+            Pre-sale <ColorWrap color="primary">Info</ColorWrap>
+          </StyledText>
+        </Row>
+        <Row alignItems={['center']} flexDirection={['column', 'row', 'row', 'row']} justifyContent="space-evenly">
+          <PreSaleInfoCard alignItems={'start'} flexDirection={'column'} width={'480px'} height={'378px'} background={stepOneCardImage} marginBottom={['25px', '0px', '0px', '0px']}>
             <Col marginLeft={'100px'}>
               <Typography fontFamily={'primary'} fontWeight={700} color="primary" fontSize='subtitle' marginY={50}>
                 Lira Presale
@@ -179,20 +184,20 @@ export default function Home() {
               </Typography>
             </Col>
           </PreSaleInfoCard>
-          <PreSaleInfoCard alignItems={'start'} flexDirection={'column'} width={'480px'} height={'378px'} background={stepTwoCardImage}>
-            <Col marginLeft={'100px'}>
-              <Typography fontFamily={'primary'} fontWeight={700} color="primary" fontSize='subtitle' marginY={50}>
+          <PreSaleInfoCard alignItems={'start'} flexDirection={'column'} width={'480px'} height={'378px'} background={stepTwoCardImage} marginBottom={['25px', '0px', '0px', '0px']} paddingRight={['15px']}>
+            <Col marginLeft={'120px'}>
+              <Typography fontFamily={'primary'} fontWeight={700} color="primary" fontSize='subtitle' marginTop={'40px'} marginBottom={'10px'}>
                 Sacrifice Phase
               </Typography>
               <Typography fontWeight={700} color="white" fontSize='p' marginY={20}>
-                The Satoshi Lira presale and its tokens, LIRA/TBg/TBs/TBb and YOSHI.
+                The sacrifice phase consists of three sub-phases, each lasting one week, with a maximum  amount of 1 wBTC that can be sacrificed per sub-phase. The pricing structure for each sub-phase starts from 1 LIRA = 1 Satoshi for the first weak, 1 LIRA = 1.6 Satoshi for the second week and 1 LIRA = 2 Satoshi for the third week.
               </Typography>
-              <Typography color="secondary" fontSize='p' marginY={40}>
+              {/* <Typography color="secondary" fontSize='p' marginY={40}>
                 view more &#62;
-              </Typography>
+              </Typography> */}
             </Col>
           </PreSaleInfoCard>
-          <PreSaleInfoCard alignItems={'start'} width={'480px'} height={'378px'} background={stepThreeCardImage}>
+          <PreSaleInfoCard alignItems={'start'} width={'480px'} height={'378px'} background={stepThreeCardImage} marginBottom={['25px', '0px', '0px', '0px']}>
             <Col marginLeft={'100px'}>
               <Typography fontFamily={'primary'} fontWeight={700} color="primary" fontSize='subtitle' marginY={50}>
                 Reward phase of Sacrifice
