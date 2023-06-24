@@ -170,8 +170,8 @@ export default function Home() {
             Pre-sale <ColorWrap color="primary">Info</ColorWrap>
           </StyledText>
         </Row>
-        <Row alignItems={['center']} flexDirection={['column', 'row', 'row', 'row']} justifyContent="space-evenly">
-          <PreSaleInfoCard alignItems={'start'} flexDirection={'column'} width={'480px'} height={'378px'} background={stepOneCardImage} marginBottom={['25px', '0px', '0px', '0px']}>
+        <Row alignItems={['center']} flexDirection={['column', 'column', 'column', 'row']} justifyContent="space-evenly">
+          <PreSaleInfoCard alignItems={'start'} width={'480px'} height={'378px'} background={stepOneCardImage} marginBottom={['25px', '25px', '25px', '0px']}>
             <Col marginLeft={'100px'}>
               <Typography fontFamily={'primary'} fontWeight={700} color="primary" fontSize='subtitle' marginY={50}>
                 Lira Presale
@@ -184,7 +184,7 @@ export default function Home() {
               </Typography>
             </Col>
           </PreSaleInfoCard>
-          <PreSaleInfoCard alignItems={'start'} flexDirection={'column'} width={'480px'} height={'378px'} background={stepTwoCardImage} marginBottom={['25px', '0px', '0px', '0px']} paddingRight={['15px']}>
+          <PreSaleInfoCard alignItems={'start'} width={'480px'} height={'378px'} background={stepTwoCardImage} marginBottom={['25px', '25px', '25px', '0px']} paddingRight={['15px']}>
             <Col marginLeft={'120px'}>
               <Typography fontFamily={'primary'} fontWeight={700} color="primary" fontSize='subtitle' marginY={50}>
                 Sacrifice Phase
@@ -197,9 +197,9 @@ export default function Home() {
               </Typography>
             </Col>
           </PreSaleInfoCard>
-          <PreSaleInfoCard alignItems={'start'} width={'480px'} height={'378px'} background={stepThreeCardImage} marginBottom={['25px', '0px', '0px', '0px']}>
+          <PreSaleInfoCard alignItems={'start'} width={'480px'} height={'378px'} background={stepThreeCardImage} marginBottom={['25px', '25px', '25px', '0px']}>
             <Col marginLeft={'100px'}>
-              <Typography fontFamily={'primary'} fontWeight={700} color="primary" fontSize='subtitle' marginY={50} marginBottom={'25px'}>
+              <Typography fontFamily={'primary'} fontWeight={700} color="primary" fontSize='subtitle' marginY={50}>
                 Reward phase of Sacrifice
               </Typography>
               <Typography fontWeight={700} color="white" fontSize='p' marginY={20}>

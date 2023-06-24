@@ -12,7 +12,7 @@ import { Typography } from "../Typography";
 const StyledFooterTitle = styled(Typography)`
   color: ${props => props.theme.colors['white']};
   font-weight: 700;
-  line-height: 32px;
+  line-height: 48px;
   font-size: 32px;
   letter-spacing: 0em;
   text-align: left;
@@ -52,7 +52,7 @@ const StyledFooterItem = styled(Typography)`
 const StyledFooterText = styled(Typography)`
   color: ${props => props.theme.colors['white']};
   font-weight: 700;
-  line-height: 27px;
+  line-height: 26px;
 `
 
 export function Footer() {
