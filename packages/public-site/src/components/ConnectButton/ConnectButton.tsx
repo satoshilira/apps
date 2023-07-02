@@ -27,7 +27,7 @@ export function ConnectButton() {
   const { isConnected, connect, disconnect } = useWallet()
 
   return (
-    <Col style={{ minHeight: '100vh' }}>
+    <Col>
       <StyledButton onClick={() => isConnected ? disconnect() : connect()}>
         <img src={metamask} width={30} />
         <Typography color="white" margin={0} flexGrow={1}>{isConnected ? 'Disconnect' : 'Connect'} Metamask</Typography>

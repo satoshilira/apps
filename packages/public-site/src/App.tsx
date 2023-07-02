@@ -1,23 +1,25 @@
-import {ThemeProvider} from 'styled-components';
-import {createPublicClient, http} from 'viem'
-import {arbitrum, arbitrumGoerli} from 'viem/chains';
-import {createConfig, WagmiConfig} from 'wagmi'
-import {Footer, Header} from './components';
-import {useLira, useSacrifice, useWallet} from './hooks';
-import theme from './theme';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import {ThemeProvider} from 'styled-components';
+import {configureChains, createConfig, WagmiConfig} from 'wagmi'
+import {arbitrum, arbitrumGoerli} from 'viem/chains';
+import {publicProvider} from 'wagmi/providers/public'
+import {Footer, Header} from './components';
+import {GlobalStyles} from './components/ui';
+import theme from './theme';
 import Home from './pages/Home';
 import Tokens from './pages/Tokens';
 import Sacrifice from './pages/Sacrifice';
 import BlockchainData from './pages/BlockchainData';
-import {GlobalStyles} from './components/ui';
+
+const { publicClient, webSocketPublicClient } = configureChains(
+  [arbitrum, arbitrumGoerli],
+  [publicProvider()],
+)
 
 const config = createConfig({
   autoConnect: true,
-  publicClient: createPublicClient({
-    chain: arbitrum,
-    transport: http()
-  }),
+  publicClient,
+  webSocketPublicClient,
 })
 
 export default function App() {

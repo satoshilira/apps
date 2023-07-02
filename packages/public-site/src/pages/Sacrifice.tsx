@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from 'react';
 import { Typography } from '../components/Typography';
-import { useSacrifice, useWallet } from '../hooks';
+import {useSacrifice, useWallet, useWbtcBalance} from '../hooks';
 import { Col } from '../components/Col';
 import { Countdown } from '../components';
 import { useWagmiNetwork } from '../hooks/useChain';
@@ -9,6 +9,10 @@ import styled from 'styled-components';
 import { Row } from '../components/Row';
 import metamask from '../img/metamask-fox.svg';
 import { ConnectButton } from '../components/ConnectButton/ConnectButton';
+import { useNetwork } from 'wagmi';
+import { parseUnits } from 'viem';
+import { formatUint256 } from '../utils';
+import { BigNumber } from 'ethers';
 
 const StyledText = styled.p<FontSizeProps>`
   color: ${props => props.theme.colors.white};
@@ -47,20 +51,22 @@ export default function Sacrifice() {
   const [error, setError] = useState('');
 
   const {
-    bonus,
     started,
-    sacrified,
-    sacrificable,
     end,
     sacrificeTransaction,
     isLoadingSacrifceTransacion,
     sacrificeTransactionSuccess,
     writeSacrificeTransaction,
+    sacrifices,
+    allowance
   } = useSacrifice()
-  const { chain } = useWagmiNetwork()
+  const { chain } = useNetwork()
+  const { wbtcBalance } = useWbtcBalance()
 
-  console.log('sacrifice', { sacrificeTransaction, isLoadingSacrifceTransacion, sacrificeTransactionSuccess })
+  console.log('wbtc balance', wbtcBalance)
+  console.log('sacrifice', { started, sacrificeTransaction, isLoadingSacrifceTransacion, sacrificeTransactionSuccess })
   console.log('chain', chain)
+  console.log('allowance', allowance)
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -76,18 +82,20 @@ export default function Sacrifice() {
       setError('Minimum SAT amount is 10000');
     }
 
-    if (error === '') {
-      writeSacrificeTransaction({
-        args: [amount]
-      })
-    } else {
-      setError(error)
-    }
+    setError(error)
   };
 
   const onSacrifice = () => {
     console.log('on sacrifice', amount)
+
+    if (!error) {
+      writeSacrificeTransaction({
+        args: [amount],
+      })
+    }
   }
+
+  console.log('aaaaa', sacrifices)
 
   return (
     <Col style={{minHeight: '100vh'}}>
@@ -111,9 +119,21 @@ export default function Sacrifice() {
         </>
       ) : (
         <>
-          <Typography color="white">Sacrifice Redeem</Typography>
+          <Typography color="white" margin={0}>Sacrifice Redeem</Typography>
         </>
       )}
+
+      <ul>
+        {Array.isArray(sacrifices) && sacrifices.length > 0 && (
+          sacrifices.map(({owner, amount, redeemed}: {owner: string, amount: BigNumber, redeemed: boolean}) => (
+            <li style={{border: '1px solid white', padding: 10}}>
+              <Typography color="white">{owner}</Typography>
+              <Typography color="white">{formatUint256(amount, 8, false, 0)} LIRA</Typography>
+              <Typography color="white">{redeemed ? 'redeemed' : 'not redeemed'}</Typography>
+            </li>
+          ))
+        )}
+      </ul>
     </Col>
   )
 }
