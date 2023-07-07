@@ -23,6 +23,7 @@ export interface Colors {
   'white-80': string
   primary: string
   secondary: string
+  red: string
   emphasis: {
     high: string
     medium: string
@@ -76,6 +77,7 @@ const colors: Colors = {
   'white-80': 'rgba(255,255,255,0.8)',
   primary: '#B6FE46',
   secondary: '#09FEF5',
+  red: '#fe092e',
   emphasis: {
     high: '#FFFFFF',
     medium: 'rgba(255, 255, 255, 0.8)',
