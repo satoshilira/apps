@@ -1,11 +1,11 @@
-import {useAccount, useBalance, useConnect, useContractRead, useContractWrite, useDisconnect, useNetwork} from 'wagmi';
-import { InjectedConnector } from 'wagmi/connectors/injected'
+import {useAccount, useConnect, useContractRead, useContractWrite, useDisconnect, useNetwork} from 'wagmi';
+import {InjectedConnector} from 'wagmi/connectors/injected'
 import lira from '@satoshi-lira/deployments/arbitrum/LIRA.json'
 import wbtc from '@satoshi-lira/deployments/arbitrumGoerli/MockWBTC.json'
 import sacrifice from '@satoshi-lira/deployments/arbitrumGoerli/LIRASacrifice.json'
-import { BigNumber } from 'ethers';
-import { EthereumAddress } from '../types';
-import { useEffect, useMemo, useState } from 'react';
+import {BigNumber} from 'ethers';
+import {EthereumAddress} from '../types';
+import {useMemo} from 'react';
 
 const ENABLED_CHAINS = [
   421613, // arbitrum goerli
@@ -109,6 +109,14 @@ export function useSacrifice() {
     enabled: chainEnabled,
   })
 
+  const { data: sacrificable, isLoading: isLoadingSacrificable } = useContractRead({
+    abi: sacrifice.abi,
+    address,
+    functionName: 'sacrificable',
+    enabled: chainEnabled,
+    watch: !!started,
+  })
+
   const { data: sacrifices, isLoading: isLoadingSacrifices } = useContractRead({
     abi: sacrifice.abi,
     address,
@@ -121,11 +129,23 @@ export function useSacrifice() {
     data: sacrificeTransaction,
     isLoading: isLoadingSacrifceTransacion,
     isSuccess: sacrificeTransactionSuccess,
-    write: writeSacrificeTransaction
+    write: writeSacrificeTransaction,
+    error: sacrificeError,
   } = useContractWrite({
     abi: sacrifice.abi,
     address,
     functionName: 'sacrifice',
+  })
+
+  const {
+    data: approveTransaction,
+    isLoading: isLoadingApproveTransacion,
+    isSuccess: approveTransactionSuccess,
+    write: writeApproveTransaction
+  } = useContractWrite({
+    abi: wbtc.abi,
+    address: wbtc.address as EthereumAddress,
+    functionName: 'approve',
   })
 
   const { address: walletAddress } = useWallet()
@@ -135,29 +155,41 @@ export function useSacrifice() {
     address: wbtc.address as EthereumAddress,
     functionName: 'allowance',
     enabled: chainEnabled,
+    watch: chainEnabled,
     args: [walletAddress, address],
   })
 
+  // @ts-ignore
+  console.log('aaa', sacrificeError?.cause.reason)
+
   return {
-    started,
-    isLoadingStarted,
-    // TODO: typings
+    // TODO: typing lib
+    allowance: BigNumber.from(allowance ? allowance : 0),
+    approveTransaction,
+    approveTransactionSuccess,
     // @ts-ignore
-    bonus: Number(round?.bonus) || 0,
+    bonus: round?.bonus !== undefined ?  Number(round?.bonus) : 0,
+    // @ts-ignore
+    end: new Date(Number(round?.end) * 1000) || 0,
+    isLoadingApproveTransacion,
+    isLoadingSacrifceTransacion,
+    isLoadingSacrificable,
+    isLoadingSacrifice: isLoadingRound,
+    isLoadingSacrifices,
+    isLoadingStarted,
+    refetchRound,
+    sacrificable: sacrificable ? BigNumber.from(sacrificable) : 0,
+    // @ts-ignore
+    sacrificeError: sacrificeError?.cause?.reason,
+    sacrificeTransaction,
+    sacrificeTransactionSuccess,
+    sacrifices: sacrifices || [],
     // @ts-ignore
     sacrified: Number(round?.sacrified) || 0,
     // @ts-ignore
     start: new Date(Number(round?.start) * 1000) || 0,
-    // @ts-ignore
-    end: new Date(Number(round?.end) * 1000) || 0,
-    isLoadingSacrifice: isLoadingRound,
-    refetchRound,
-
-    sacrificeTransaction,
-    isLoadingSacrifceTransacion,
-    sacrificeTransactionSuccess,
+    started,
+    writeApproveTransaction,
     writeSacrificeTransaction,
-    sacrifices: sacrifices || [],
-    allowance,
   }
 }

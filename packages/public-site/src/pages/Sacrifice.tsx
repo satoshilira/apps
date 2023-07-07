@@ -1,18 +1,16 @@
-import { ChangeEvent, useState } from 'react';
-import { Typography } from '../components/Typography';
+import {ChangeEvent, useEffect, useState} from 'react';
+import {Typography} from '../components/Typography';
 import {useSacrifice, useWallet, useWbtcBalance} from '../hooks';
-import { Col } from '../components/Col';
-import { Countdown } from '../components';
-import { useWagmiNetwork } from '../hooks/useChain';
-import { FontSizeProps, fontSize } from 'styled-system';
+import {Col} from '../components/Col';
+import {Countdown} from '../components';
+import {fontSize, FontSizeProps} from 'styled-system';
 import styled from 'styled-components';
-import { Row } from '../components/Row';
-import metamask from '../img/metamask-fox.svg';
-import { ConnectButton } from '../components/ConnectButton/ConnectButton';
-import { useNetwork } from 'wagmi';
-import { parseUnits } from 'viem';
-import { formatUint256 } from '../utils';
-import { BigNumber } from 'ethers';
+import {Row} from '../components/Row';
+import {ConnectButton} from '../components/ConnectButton/ConnectButton';
+import {useNetwork} from 'wagmi';
+import {formatUint256} from '../utils';
+import {BigNumber} from 'ethers';
+import {getSacrificeAddress} from '../utils/getAddress';
 
 const StyledText = styled.p<FontSizeProps>`
   color: ${props => props.theme.colors.white};
@@ -50,23 +48,36 @@ export default function Sacrifice() {
   const [amount, setAmount] = useState<string>('10000')
   const [error, setError] = useState('');
 
+  const { isConnected } = useWallet()
+
   const {
-    started,
+    allowance,
     end,
-    sacrificeTransaction,
     isLoadingSacrifceTransacion,
+    sacrificable,
+    sacrificeError,
+    sacrificeTransaction,
     sacrificeTransactionSuccess,
-    writeSacrificeTransaction,
     sacrifices,
-    allowance
+    started,
+    writeApproveTransaction,
+    writeSacrificeTransaction,
   } = useSacrifice()
+
+  useEffect(() => {
+    switch (sacrificeError) {
+      case 'LIRA_SACRIFICE_ROUND_SOLD_OUT':
+        setError('LIRA sacrifice sold out for this round')
+    }
+  }, [sacrificeError])
+
   const { chain } = useNetwork()
   const { wbtcBalance } = useWbtcBalance()
 
   console.log('wbtc balance', wbtcBalance)
   console.log('sacrifice', { started, sacrificeTransaction, isLoadingSacrifceTransacion, sacrificeTransactionSuccess })
   console.log('chain', chain)
-  console.log('allowance', allowance)
+  console.log('allowance', allowance, BigNumber.from(allowance || 0).toString())
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -85,48 +96,53 @@ export default function Sacrifice() {
     setError(error)
   };
 
+  const canSacrifice = allowance.gte(BigNumber.from(amount))
+
   const onSacrifice = () => {
     console.log('on sacrifice', amount)
 
     if (!error) {
-      writeSacrificeTransaction({
-        args: [amount],
-      })
+      if (canSacrifice) {
+        writeSacrificeTransaction({
+          args: [amount],
+        })
+      } else {
+        writeApproveTransaction({
+          args: [getSacrificeAddress(chain), amount]
+        })
+      }
     }
   }
 
-  console.log('aaaaa', sacrifices)
-
   return (
-    <Col style={{minHeight: '100vh'}}>
-      <StyledText as="h2" fontSize={['32px', '46px', '80px', '96px']} color="white">Satoshi LIRA Sacrifice</StyledText>
+    <Col style={{ minHeight: '100vh' }}>
       <ConnectButton />
-      {started ? (
-        <>
-          <Col marginY={80} style={{textAlign: 'center', alignItems: 'center'}}>
-            <Typography as="h5" color="white">Round ends in</Typography>
-            <Countdown date={end} />
-            <Row width={1 / 2} my={20} alignItems="center" justifyContent="center">
-              <StyledInput id="amount" name="amount" type="number" value={amount} onChange={handleChange} />
-              <Typography as="h5" color="white" margin={0}>SAT</Typography>
-            </Row>
-            <Row>{error && <Typography color="red">{error}</Typography>}</Row>
-            <Row>
-              <button onClick={onSacrifice} disabled={!!error}>Sacrifice</button>
-              {error && <Typography color="white">{error}</Typography>}
-            </Row>
-          </Col>
-        </>
-      ) : (
-        <>
-          <Typography color="white" margin={0}>Sacrifice Redeem</Typography>
-        </>
+
+      {isConnected && (
+        <Col marginY={80} style={{ textAlign: 'center', alignItems: 'center' }}>
+          <Typography as="h5" color="white">Round ends in</Typography>
+          <Countdown date={end} />
+
+          <Col mt={60} />
+
+          <Typography as="h5" color="white">{sacrificable.toString()} SAT can be sacrified</Typography>
+
+          <Row width={1 / 2} my={20} alignItems="center" justifyContent="center">
+            <StyledInput id="amount" name="amount" type="number" value={amount} onChange={handleChange} />
+            <Typography as="h5" color="white" margin={0}>SAT</Typography>
+          </Row>
+          <Row>{(error || sacrificeError) && <Typography color="red">{error || sacrificeError}</Typography>}</Row>
+          <Row>
+            <button onClick={onSacrifice} disabled={!!error}>{canSacrifice ? 'Sacrifice' : 'Approve'}</button>
+            {error && <Typography color="white">{error}</Typography>}
+          </Row>
+        </Col>
       )}
 
       <ul>
         {Array.isArray(sacrifices) && sacrifices.length > 0 && (
-          sacrifices.map(({owner, amount, redeemed}: {owner: string, amount: BigNumber, redeemed: boolean}) => (
-            <li style={{border: '1px solid white', padding: 10}}>
+          sacrifices.map(({ owner, amount, redeemed }: { owner: string, amount: BigNumber, redeemed: boolean }) => (
+            <li style={{ border: '1px solid white', padding: 10 }}>
               <Typography color="white">{owner}</Typography>
               <Typography color="white">{formatUint256(amount, 8, false, 0)} LIRA</Typography>
               <Typography color="white">{redeemed ? 'redeemed' : 'not redeemed'}</Typography>
