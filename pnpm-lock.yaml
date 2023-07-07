@@ -35,8 +35,8 @@ importers:
         specifier: ^0.3.0
         version: 0.3.0(@types/react@18.2.7)(react-native@0.71.8)(react@18.2.0)
       '@satoshi-lira/deployments':
-        specifier: 1.1.0-beta.3
-        version: 1.1.0-beta.3
+        specifier: 1.1.0-beta.5
+        version: 1.1.0-beta.5
       '@testing-library/jest-dom':
         specifier: ^5.16.5
         version: 5.16.5
@@ -5883,8 +5883,8 @@ packages:
       - encoding
     dev: false
 
-  /@satoshi-lira/deployments@1.1.0-beta.3:
-    resolution: {integrity: sha512-X0Y0OnWbNIN8tM5hjVnTP2HheqmZiy+oV4xXNUJngS0GFiDClX6sWH029uHl9XS0YhKI6hQ5JGyN4RLJCzZ4+g==}
+  /@satoshi-lira/deployments@1.1.0-beta.5:
+    resolution: {integrity: sha512-jcYWaMQBj/ahZfqSYHnyaQcmZQJypRsoUN7FCtW79sb22z/7Lbh/HWpA5H9J7rtG+8J5DIwxDQnDuoqEUIA9+w==}
     dev: false
 
   /@scure/base@1.1.1:
