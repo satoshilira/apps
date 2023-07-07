@@ -4,9 +4,27 @@ import {Row} from "../Row";
 import {Col} from "../Col";
 import {Typography} from "../Typography";
 import {StyledRectangle} from "../../pages/Home";
+import styled from "styled-components";
 export interface CountdownProps {
   date: Date
 }
+
+const StyledValue = styled(Typography)`
+  font-family: ${props => props.theme.fontFamilies.secondary};
+  font-size: ${props => props.theme.fontSizes.h4};
+  font-weight: bold;
+  margin: 0;
+  text-align: left;
+  line-height: 60px;
+`
+
+const StyledLabel = styled(Typography)`
+  color: ${props => props.theme.colors.white};
+  font-size: ${props => props.theme.fontSizes.subtitle};
+  margin: 0 0 10px;
+  text-align: left;
+  line-height: 30px;
+`
 
 export function Countdown({date}: CountdownProps) {
   const countdownRenderer = ({ days, hours, minutes, seconds, completed }: CountdownRenderProps) => {
@@ -17,23 +35,23 @@ export function Countdown({date}: CountdownProps) {
     return (
       <Row flexDirection={['column', 'column', 'row', 'row']} justifyContent="center" alignItems="center">
         <Col marginX={32} width={110} pb={[10, 10, 10, 0]}>
-          <Typography color="white" fontFamily="secondary" fontSize="h4" fontWeight="bold" lineHeight="60px" margin={0}>{days}</Typography>
-          <Typography color="white" fontSize="subtitle" margin="0 0 10px" lineHeight="30px">Days</Typography>
+          <StyledValue>{days}</StyledValue>
+          <StyledLabel>Days</StyledLabel>
           <StyledRectangle width={92} height={4} color="horizontalGreenToCyan" opacity={0.6} />
         </Col>
         <Col marginX={32} width={110} pb={[10, 10, 10, 0]}>
-          <Typography color="white" fontFamily="secondary" fontSize="h4" fontWeight="bold" lineHeight="60px" margin={0}>{hours}</Typography>
-          <Typography color="white" fontSize="subtitle" margin="0 0 10px" lineHeight="30px">Hours</Typography>
+          <StyledValue>{hours}</StyledValue>
+          <StyledLabel>Hours</StyledLabel>
           <StyledRectangle width={92} height={4} color="horizontalGreenToCyan" opacity={0.6} />
         </Col>
         <Col marginX={32} width={110} pb={[10, 10, 10, 0]}>
-          <Typography color="white" fontFamily="secondary" fontSize="h4" fontWeight="bold" lineHeight="60px" margin={0}>{minutes}</Typography>
-          <Typography color="white" fontSize="subtitle" margin="0 0 10px" lineHeight="30px">Minutes</Typography>
+          <StyledValue>{minutes}</StyledValue>
+          <StyledLabel>Minutes</StyledLabel>
           <StyledRectangle width={92} height={4} color="horizontalGreenToCyan" opacity={0.6} />
         </Col>
         <Col marginX={32} width={110}>
-          <Typography color="primary" fontFamily="secondary" fontSize="h4" fontWeight="bold" lineHeight="60px" margin={0}>{seconds}</Typography>
-          <Typography color="white" fontSize="subtitle" margin="0 0 10px" lineHeight="30px">Sec</Typography>
+          <StyledValue color="primary">{seconds}</StyledValue>
+          <StyledLabel>Sec</StyledLabel>
           <StyledRectangle width={92} height={4} color="horizontalGreenToCyan" opacity={0.6} />
         </Col>
       </Row>
