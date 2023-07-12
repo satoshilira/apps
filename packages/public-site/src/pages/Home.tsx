@@ -1,4 +1,4 @@
-import {ReactElement} from 'react';
+import {ReactElement, useState} from 'react';
 import styled from 'styled-components';
 import {BigNumber} from 'ethers';
 import {Col} from '../components/Col';
@@ -12,8 +12,13 @@ import daVinciLira from '../img/da-vinci-lira.svg';
 import stepOneCardImage from '../img/lira-pre-sale-step-1.png';
 import stepTwoCardImage from '../img/lira-pre-sale-step-2.png';
 import stepThreeCardImage from '../img/lira-pre-sale-step-3.png';
+import stepOneModalImage from '../img/modal-pre-sale-step-1.png';
+import stepTwoModalImage from '../img/modal-pre-sale-step-2.png';
+import stepThreeModalImage from '../img/modal-pre-sale-step-3.png';
 import button from '../img/button.svg';
 import {background, BackgroundProps, fontSize, FontSizeProps} from 'styled-system';
+import { Modal } from 'react-overlays';
+
 
 const StyledContainer = styled(Col)<BackgroundProps>`
   background: url(${daVinciLira}) no-repeat;
@@ -94,6 +99,35 @@ export const PreSaleInfoCard = styled(Row)<any>`
   border-top-left-radius: 30;
 `
 
+const Backdrop = styled("div")`
+  position: fixed;
+  z-index: 1040;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #000;
+  opacity: 0.5;
+`;
+
+const PositionedModal = styled(Modal)`
+  position: fixed;
+  width: ${props => props.width}px;
+  height: ${props => props.height}px;
+  z-index: 1040;
+  top: ${props => props.top}; // 30%;
+  left: 40%;
+  // border: 1px solid #e5e5e5;
+  background-color: white;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  padding: 20px;
+
+  // background: url(${props => props.background});
+  backgroundRepeat: "no-repeat",
+  backgroundSize: "cover"
+`;
+
+
 export default function Home() {
   const {totalSupply, lockedSupply, isLoadingTotalSupply, isLoadingLockedSupply, intrinsicValue} = useLira()
 
@@ -109,6 +143,12 @@ export default function Home() {
 
   const liraValue = <TextWithVariation text={`1 LIRA = ${intrinsicValue.toFixed(2)} SAT`}
                                        value={Number((intrinsicValue - 1) * 100).toFixed(2)}/>
+
+  const [showModalOne, setShowModalOne] = useState(false);
+  const [showModalTwo, setShowModalTwo] = useState(false);
+  const [showModalThree, setShowModalThree] = useState(false);
+
+  const renderBackdrop = (props: any) => <Backdrop {...props} />;
 
   return (
     <StyledContainer backgroundPosition={['10% -250px', '20% -250px', '50% -250px', '100% -250px']}>
@@ -173,43 +213,105 @@ export default function Home() {
         <Row alignItems={['center']} flexDirection={['column', 'column', 'column', 'row']} justifyContent="space-evenly">
           <PreSaleInfoCard alignItems={'start'} width={'480px'} height={'378px'} background={stepOneCardImage} marginBottom={['25px', '25px', '25px', '0px']}>
             <Col marginLeft={'100px'}>
-              <Typography fontFamily={'primary'} fontWeight={700} color="primary" fontSize='subtitle' marginY={50}>
+              <Typography fontFamily={'primary'} fontWeight={700} color="primary" fontSize='subtitle' marginY={45}>
                 Lira Presale
               </Typography>
-              <Typography fontWeight={700} color="white" fontSize='p' marginY={20}>
+              <Typography fontWeight={700} color="white" fontSize='p' marginY={10}>
                 The Satoshi Lira presale and its tokens, LIRA/TBg/TBs/TBb and YOSHI.
               </Typography>
-              <Typography color="secondary" fontSize='p' marginY={40}>
+              <Typography color="secondary" fontSize='p' marginY={40} onClick={() => setShowModalOne(true)}>
                 view more &#62;
               </Typography>
             </Col>
           </PreSaleInfoCard>
+          <PositionedModal
+            top={'25%'}
+            width={487}
+            height={450}
+            background={stepOneModalImage}
+            show={showModalOne}
+            onHide={() => setShowModalOne(false)}
+            renderBackdrop={renderBackdrop}
+            aria-labelledby="modal-label"
+          >
+            <div>
+              <Typography fontFamily={'primary'} fontWeight={700} color="primary" fontSize='subtitle' marginY={3}>
+                Lira Presale
+              </Typography>
+              <p>
+                The Satoshi LIRA presale and its tokens, LIRA/TBg/TBs/TBb, and YOSHI, are structured into two distinct phases: the Sacrifice Phase and the Reward Phase of Sacrifice. This presale is designed to establish a sound and ethical token economics from day zero, aligning with the core mission of the LIRA team to create the first cryptocurrency with genuine and unequivocal intrinsic value. Therefore, structuring the presale traditionally would undermine the fundamental concept of Satoshi LIRA as a BTC derivative.
+              </p>
+            </div>
+          </PositionedModal>
+          
           <PreSaleInfoCard alignItems={'start'} width={'480px'} height={'378px'} background={stepTwoCardImage} marginBottom={['25px', '25px', '25px', '0px']} paddingRight={['15px']}>
             <Col marginLeft={'120px'}>
-              <Typography fontFamily={'primary'} fontWeight={700} color="primary" fontSize='subtitle' marginY={50}>
+              <Typography fontFamily={'primary'} fontWeight={700} color="primary" fontSize='subtitle' marginY={45}>
                 Sacrifice Phase
               </Typography>
               <Typography fontWeight={700} color="white" fontSize='p' marginY={10}>
                 The sacrifice phase consists of three sub-phases, each lasting one week, with a maximum  amount of 1 wBTC that can be sacrificed per sub-phase.
               </Typography>
-              <Typography color="secondary" fontSize='p' marginY={20}>
+              <Typography color="secondary" fontSize='p' marginY={20} onClick={() => setShowModalTwo(true)}>
                 view more &#62;
               </Typography>
             </Col>
           </PreSaleInfoCard>
+          <PositionedModal
+            top={'25%'}
+            width={487}
+            height={450}
+            background={stepTwoModalImage}
+            show={showModalTwo}
+            onHide={() => setShowModalTwo(false)}
+            renderBackdrop={renderBackdrop}
+            aria-labelledby="modal-label"
+          >
+            <div>
+              <Typography fontFamily={'primary'} fontWeight={700} color="primary" fontSize='subtitle' marginY={3}>
+                Sacrifice Phase
+              </Typography>
+              <p>
+                The Sacrifice Phase consists of ten sub-phases, each lasting one week, with a maximum amount of 1 wBTC that can be sacrificed per sub-phase. Each sacrifice made during the phases receives a bonus following the Fibonacci sequence, starting at 55%.
+                The first phase of the presale is called the Sacrifice Phase because users are required to visit our platform and sacrifice a desired amount of wBTC. Depending on the sub-phase in which the sacrifice is made, users will receive a bonus when redeeming their sacrifice based on the corresponding sub-phase.
+              </p>
+            </div>
+          </PositionedModal>
+
           <PreSaleInfoCard alignItems={'start'} width={'480px'} height={'378px'} background={stepThreeCardImage} marginBottom={['25px', '25px', '25px', '0px']}>
             <Col marginLeft={'100px'}>
-              <Typography fontFamily={'primary'} fontWeight={700} color="primary" fontSize='subtitle' marginY={50}>
+              <Typography fontFamily={'primary'} fontWeight={700} color="primary" fontSize='subtitle' marginY={45}>
                 Reward phase of Sacrifice
               </Typography>
               <Typography fontWeight={700} color="white" fontSize='p' marginY={20}>
                 LIRA/TBg/TBs/TBb and YOSHI.
               </Typography>
-              <Typography color="secondary" fontSize='p' marginY={40}>
+              <Typography color="secondary" fontSize='p' marginY={40} onClick={() => setShowModalThree(true)}>
                 view more &#62;
               </Typography>
             </Col>
           </PreSaleInfoCard>
+          <PositionedModal
+            top={'25%'}
+            width={487}
+            height={450}
+            background={stepThreeModalImage}
+            show={showModalThree}
+            onHide={() => setShowModalThree(false)}
+            renderBackdrop={renderBackdrop}
+            aria-labelledby="modal-label"
+          >
+            <div>
+              <Typography fontFamily={'primary'} fontWeight={700} color="primary" fontSize='subtitle' marginY={3}>
+                Reward phase of Sacrifice
+              </Typography>
+              <p>
+                This phase is where the sacrifices made during the presale are rewarded based on the time and quantity of wBTC sacrificed. Once the Sacrifice Phase concludes, the capital collected will be utilized by the protocol for liquidity provision activities, activating the entire Satoshi LIRA ecosystem. The rewards generated from the liquidity provision activities, as explained in the corresponding chapter, will be converted into wBTC and used to mint new LIRA. Throughout the Reward Phase of Sacrifice, 50% of each minted block will be utilized to reward users who made sacrifices in the order they were made.
+                Once all the sacrifices have been rewarded, the LIRA ecosystem reaches 100% efficiency, and all newly minted LIRA blocks are distributed throughout the ecosystem.
+                Please note that this summary has been provided for clarity and comprehensibility purposes. For more detailed information, please refer to the relevant chapters of our documentation.
+              </p>
+            </div>
+          </PositionedModal>
         </Row>
       </Col>
 

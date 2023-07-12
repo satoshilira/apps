@@ -12,6 +12,20 @@ export interface FontSizes {
   caption: string
 }
 
+export interface LineHeights {
+  h1: string
+  h2: string
+  h3: string
+  h4: string
+  h5: string
+  h6: string
+  button: string
+  body: string
+  subtitle: string
+  p: string
+  caption: string
+}
+
 export interface FontFamilies {
   primary: string
   secondary: string
@@ -49,21 +63,36 @@ export interface Colors {
 export interface Theme {
   fontSizes: FontSizes,
   fontFamilies: FontFamilies,
+  lineHeights: LineHeights,
   colors: Colors,
 }
 
 const fontSizes: FontSizes = {
   h1: '104px',
   h2: '96px',
-  h3: '80px',
+  h3: '75px',
   h4: '48px',
   h5: '40px',
   h6: '32px',
-  button: '40px',
+  button: '32px',
   body: '28px',
-  subtitle: '26px',
+  subtitle: '24px',
   p: '18px',
   caption: '16px',
+}
+
+const lineHeights: LineHeights = {
+  h1: '116px',
+  h2: '116px',
+  h3: '108px',
+  h4: '72px',
+  h5: '60px',
+  h6: '48px',
+  button: '140px',
+  body: '42px',
+  subtitle: '42px',
+  p: '18px',
+  caption: '24px',
 }
 
 const fontFamilies: FontFamilies = {
@@ -102,6 +131,7 @@ const colors: Colors = {
 
 const theme = {
   fontSizes,
+  lineHeights,
   fontFamilies,
   colors,
 }
