@@ -91,7 +91,7 @@ const lineHeights: LineHeights = {
   button: '140px',
   body: '42px',
   subtitle: '42px',
-  p: '18px',
+  p: '26px',
   caption: '24px',
 }
 
