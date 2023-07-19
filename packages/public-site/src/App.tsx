@@ -6,7 +6,7 @@ import {publicProvider} from 'wagmi/providers/public'
 import {Footer, Header} from './components';
 import {GlobalStyles} from './components/ui';
 import theme from './theme';
-import Home from './pages/Home';
+import {Home} from './pages/Home';
 import Tokens from './pages/Tokens';
 import Sacrifice from './pages/Sacrifice';
 import BlockchainData from './pages/BlockchainData';

@@ -5,6 +5,7 @@ import {Col} from "../Col";
 import {Typography} from "../Typography";
 import {StyledRectangle} from "../../pages/Home";
 import styled from "styled-components";
+
 export interface CountdownProps {
   date: Date
 }

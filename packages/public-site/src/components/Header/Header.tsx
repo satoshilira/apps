@@ -72,7 +72,7 @@ export function Header() {
       </Row>
 
       <Row width={1 / 3} justifyContent="flex-end" display={['none','none','none','flex']}>
-        <NavLink to="/sacrifice">
+        <NavLink to="/">
           <img src={button} height={64} alt="Buy LIRA" style={{opacity: 0.3}}/>
         </NavLink>
       </Row>

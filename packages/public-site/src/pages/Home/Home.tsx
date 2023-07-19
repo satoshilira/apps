@@ -1,21 +1,21 @@
 import {ReactElement, useState} from 'react';
 import styled from 'styled-components';
 import {BigNumber} from 'ethers';
-import {Col} from '../components/Col';
-import {Typography} from '../components/Typography';
-import {ColorWrap, Countdown} from '../components';
-import {Row} from '../components/Row';
-import {useLira} from '../hooks';
-import {formatUint256} from '../utils';
-import {Colors} from '../theme';
-import daVinciLira from '../img/da-vinci-lira.svg';
-import stepOneCardImage from '../img/lira-pre-sale-step-1.png';
-import stepTwoCardImage from '../img/lira-pre-sale-step-2.png';
-import stepThreeCardImage from '../img/lira-pre-sale-step-3.png';
-import stepOneModalImage from '../img/modal-pre-sale-step-1.png';
-import stepTwoModalImage from '../img/modal-pre-sale-step-2.png';
-import stepThreeModalImage from '../img/modal-pre-sale-step-3.png';
-import button from '../img/button.svg';
+import {Col} from '../../components/Col';
+import {Typography} from '../../components/Typography';
+import {ColorWrap, Countdown} from '../../components';
+import {Row} from '../../components/Row';
+import {useLira} from '../../hooks';
+import {formatUint256} from '../../utils';
+import {Colors} from '../../theme';
+import daVinciLira from '../../img/da-vinci-lira.svg';
+import stepOneCardImage from '../../img/lira-pre-sale-step-1.png';
+import stepTwoCardImage from '../../img/lira-pre-sale-step-2.png';
+import stepThreeCardImage from '../../img/lira-pre-sale-step-3.png';
+import stepOneModalImage from '../../img/modal-pre-sale-step-1.png';
+import stepTwoModalImage from '../../img/modal-pre-sale-step-2.png';
+import stepThreeModalImage from '../../img/modal-pre-sale-step-3.png';
+import button from '../../img/button.svg';
 import {background, BackgroundProps, fontSize, FontSizeProps} from 'styled-system';
 import { Modal } from 'react-overlays';
 
@@ -86,6 +86,7 @@ export function TextWithVariation({text, value, positive = true}: TextWithVariat
   )
 }
 
+// TODO: move to src/components/cards/PreSaleInfoCard.ts
 export const PreSaleInfoCard = styled(Row)<any>`
   width: ${props => props.width}px;
   height: ${props => props.height}px;
@@ -99,6 +100,7 @@ export const PreSaleInfoCard = styled(Row)<any>`
   border-top-left-radius: 30;
 `
 
+// TODO: move to src/components/modals/Backdrop.ts
 const Backdrop = styled("div")`
   position: fixed;
   z-index: 1040;
@@ -110,6 +112,7 @@ const Backdrop = styled("div")`
   opacity: 1;
 `;
 
+// TODO: move to src/components/modals/PositionedModal.ts
 const PositionedModal = styled(Modal)`
   position: fixed;
   width: ${props => props.width}px;
@@ -119,8 +122,7 @@ const PositionedModal = styled(Modal)`
   left: ${props => props.left}%;
 `;
 
-
-export default function Home() {
+export function Home() {
   const {totalSupply, lockedSupply, isLoadingTotalSupply, isLoadingLockedSupply, intrinsicValue} = useLira()
 
   const lockedSupplyText = !isLoadingLockedSupply && lockedSupply
@@ -192,11 +194,8 @@ export default function Home() {
         </Col>
       </Col>
 
-      <Col marginY={80}>
-        <Countdown date={new Date('06/18/2023')} />
-      </Col>
-
-      <Col maxWidth={2048} margin={['0px 20px 270px 20px']}>
+      {/* TODO: move to src/pages/Home/sections/PresaleSection.ts */}
+      {/* <Col maxWidth={2048} margin={['0px 20px 270px 20px']}>
         <Row justifyContent={['center']} marginBottom={'3%'}>
           <StyledText as="h3" fontSize={['32px', '48px']}>
             Pre-sale <ColorWrap color="primary">Info</ColorWrap>
@@ -232,7 +231,7 @@ export default function Home() {
               backgroundSize: "contain",
               backgroundRepeat: "no-repeat"
             }}>
-              <div style={{ 
+              <div style={{
                 paddingTop: "2rem",
                 paddingLeft: "15rem",
                 paddingRight: "8rem"
@@ -251,7 +250,7 @@ export default function Home() {
               </div>
             </div>
           </PositionedModal>
-          
+
           <PreSaleInfoCard alignItems={'start'} width={'480px'} height={'378px'} background={stepTwoCardImage} marginBottom={['25px', '25px', '25px', '0px']} paddingRight={['15px']}>
             <Col marginLeft={'100px'} marginRight={'25px'}>
               <Typography fontFamily={'primary'} fontWeight={700} color="primary" fontSize='subtitle' marginY={35}>
@@ -274,7 +273,7 @@ export default function Home() {
             aria-labelledby="modal-label"
             autoFocus={false}
           >
-            <div 
+            <div
               style = {{
                 height: "834px",
                 width: "1258px",
@@ -282,7 +281,7 @@ export default function Home() {
                 backgroundSize: "contain",
                 backgroundRepeat: "no-repeat",
               }}>
-                <div style={{ 
+                <div style={{
                   paddingTop: "2rem",
                   paddingLeft: "15rem",
                   paddingRight: "8rem"
@@ -322,7 +321,7 @@ export default function Home() {
             aria-labelledby="modal-label"
             autoFocus={false}
           >
-            <div 
+            <div
               style = {{
                 height: "834px",
                 width: "1258px",
@@ -330,7 +329,7 @@ export default function Home() {
                 backgroundSize: "contain",
                 backgroundRepeat: "no-repeat",
               }}>
-                <div style={{ 
+                <div style={{
                   paddingTop: "2rem",
                   paddingLeft: "15rem",
                   paddingRight: "8rem"
@@ -342,7 +341,7 @@ export default function Home() {
                   <Typography color='white' fontSize='p' marginY={10}>
                     This phase is where the sacrifices made during the presale are rewarded based on the time and quantity of wBTC sacrificed.
                     <br/><br/>
-                    Once the Sacrifice Phase concludes, the capital collected will be utilized by the protocol for liquidity provision activities, activating the entire Satoshi LIRA ecosystem. 
+                    Once the Sacrifice Phase concludes, the capital collected will be utilized by the protocol for liquidity provision activities, activating the entire Satoshi LIRA ecosystem.
                     <br/><br/>
                     The rewards generated from the liquidity provision activities, as explained in the corresponding chapter, will be converted into wBTC and used to mint new LIRA.
                     Throughout the Reward Phase of Sacrifice, 50% of each minted block will be utilized to reward users who made sacrifices in the order they were made.
@@ -355,7 +354,7 @@ export default function Home() {
             </div>
           </PositionedModal>
         </Row>
-      </Col>
+      </Col> */}
 
     </StyledContainer>
   )

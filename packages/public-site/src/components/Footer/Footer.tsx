@@ -199,7 +199,7 @@ export function Footer() {
       </Row>
 
       <Row width={'100%'}>
-        <Col width={[1 / 2]} >
+        <Col width={[1, 1, 1, 1 / 2]} >
           <StyledFooterText>©2023 Satoshi LIRA. All rights reserved</StyledFooterText>
         </Col>
 
