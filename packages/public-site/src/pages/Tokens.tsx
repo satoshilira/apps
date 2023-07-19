@@ -29,7 +29,7 @@ export default function Tokens() {
 
   return (
     <Col alignItems="center">
-      <Row alignItems="center">
+      <Row flexDirection={['column', 'column', 'column', 'row']} alignItems="center">
         <Typography as="h5" color="white" margin="0 8px">Satoshi LIRA</Typography>
         <a href="https://arbiscan.io/address/0xA07ac236fEBc390c798504E927DC8D6a4e1FfcA3" target="_blank"
            rel="noreferrer">
@@ -47,8 +47,9 @@ export default function Tokens() {
           onClick={addLiraToken}
         />
       </Row>
-      <Row alignItems="center">
-        <Typography fontSize="body" color="white">0xA07ac236fEBc390c798504E927DC8D6a4e1FfcA3</Typography>
+      <Row flexDirection={['column', 'column', 'column', 'row']} alignItems="center">
+        <Typography fontSize="body" color="white" wordBreak="break-all" marginX={[20, 0]} textAlign="center">0xA07ac236fEBc390c798504E927DC8D6a4e1FfcA3</Typography>
+        {/* TODO: better copy button */}
         <StyledCopyButton onClick={copy} marginLeft={3}>
           Copy
         </StyledCopyButton>
