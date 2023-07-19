@@ -101,6 +101,13 @@ export function useSacrifice() {
     enabled: chainEnabled,
   })
 
+  const { data: ended, isLoading: isLoadingEnded } = useContractRead({
+    abi: sacrifice.abi,
+    address,
+    functionName: 'ended',
+    enabled: chainEnabled,
+  })
+
   const { data: round, isLoading: isLoadingRound, refetch: refetchRound } = useContractRead({
     abi: sacrifice.abi,
     address,
@@ -171,7 +178,9 @@ export function useSacrifice() {
     bonus: round?.bonus !== undefined ?  Number(round?.bonus) : 0,
     // @ts-ignore
     end: new Date(Number(round?.end) * 1000) || 0,
+    ended,
     isLoadingApproveTransacion,
+    isLoadingEnded,
     isLoadingSacrifceTransacion,
     isLoadingSacrificable,
     isLoadingSacrifice: isLoadingRound,

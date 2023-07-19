@@ -11,6 +11,7 @@ import {useNetwork} from 'wagmi';
 import {formatUint256} from '../utils';
 import {BigNumber} from 'ethers';
 import {getSacrificeAddress} from '../utils/getAddress';
+import {Button} from "../components/Button";
 
 const StyledText = styled.p<FontSizeProps>`
   color: ${props => props.theme.colors.white};
@@ -53,6 +54,7 @@ export default function Sacrifice() {
   const {
     allowance,
     end,
+    ended,
     isLoadingSacrifceTransacion,
     sacrificable,
     sacrificeError,
@@ -84,19 +86,20 @@ export default function Sacrifice() {
     setAmount(value);
     let error = ''
 
-    // Controllo se il valore è un numero intero positivo
     if (!Number.isInteger(+value) || +value < 0) {
-      setError('Inserisci un numero intero positivo.');
+      error = 'Please provide a positive integer';
     }
 
     if (Number(value) < 10000) {
-      setError('Minimum SAT amount is 10000');
+      error = 'Minimum SAT amount is 10000';
     }
 
     setError(error)
   };
 
-  const canSacrifice = allowance.gte(BigNumber.from(amount))
+  const canSacrifice = (!Number.isInteger(+amount) || +amount < 0) && allowance.gte(BigNumber.from(amount))
+
+  const sacrificeButtonDisabled = !!error || !isLoadingSacrifceTransacion
 
   const onSacrifice = () => {
     console.log('on sacrifice', amount)
@@ -115,41 +118,46 @@ export default function Sacrifice() {
   }
 
   return (
-    <Col style={{ minHeight: '100vh' }}>
+    <Col style={{ minHeight: '100vh' }} alignItems="center">
       <ConnectButton />
 
       {isConnected && (
         <Col marginY={80} style={{ textAlign: 'center', alignItems: 'center' }}>
-          <Typography as="h5" color="white">Round ends in</Typography>
-          <Countdown date={end} />
+          {started as boolean && (
+            <>
+              <Typography as="h5" color="white">Round ends in</Typography>
+              <Countdown date={end} />
 
-          <Col mt={60} />
+              <Col mt={60} />
 
-          <Typography as="h5" color="white">{sacrificable.toString()} SAT can be sacrified</Typography>
+              <Typography as="h5" color="white">{sacrificable.toString()} SAT can be sacrified</Typography>
 
-          <Row width={1 / 2} my={20} alignItems="center" justifyContent="center">
-            <StyledInput id="amount" name="amount" type="number" value={amount} onChange={handleChange} />
-            <Typography as="h5" color="white" margin={0}>SAT</Typography>
-          </Row>
-          <Row>{(error || sacrificeError) && <Typography color="red">{error || sacrificeError}</Typography>}</Row>
-          <Row>
-            <button onClick={onSacrifice} disabled={!!error}>{canSacrifice ? 'Sacrifice' : 'Approve'}</button>
-            {error && <Typography color="white">{error}</Typography>}
-          </Row>
+              <Row width={1 / 2} my={20} alignItems="center" justifyContent="center">
+                <StyledInput id="amount" name="amount" type="number" value={amount} onChange={handleChange} />
+                <Typography as="h5" color="white" margin={0}>SAT</Typography>
+              </Row>
+              <Row>{(error || sacrificeError) && <Typography color="red">{error || sacrificeError}</Typography>}</Row>
+              <Row>
+                <Button>Sacrifice</Button>
+                <button onClick={onSacrifice} disabled={sacrificeButtonDisabled}>{canSacrifice ? 'Sacrifice' : 'Approve'}</button>
+              </Row>
+            </>
+          )}
         </Col>
       )}
 
-      <ul>
+      <Col width={1/2} mt={30}>
+        <Typography as="h5" color="white" margin={0} mb={16}>Sacrifices</Typography>
         {Array.isArray(sacrifices) && sacrifices.length > 0 && (
           sacrifices.map(({ owner, amount, redeemed }: { owner: string, amount: BigNumber, redeemed: boolean }) => (
-            <li style={{ border: '1px solid white', padding: 10 }}>
+            <Row justifyContent="space-between" style={{ border: '1px solid white'}} py={10} px={16}>
               <Typography color="white">{owner}</Typography>
               <Typography color="white">{formatUint256(amount, 8, false, 0)} LIRA</Typography>
-              <Typography color="white">{redeemed ? 'redeemed' : 'not redeemed'}</Typography>
-            </li>
+              {/*<Typography color="white">{redeemed ? 'redeemed' : 'not redeemed'}</Typography>*/}
+            </Row>
           ))
         )}
-      </ul>
+      </Col>
     </Col>
   )
 }
