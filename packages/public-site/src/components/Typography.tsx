@@ -1,6 +1,19 @@
 import styled from 'styled-components'
-import { compose, typography, space, color, SpaceProps, ColorProps, TypographyProps as StyledTypographyProps, fontSize, FontSizeProps, flexGrow, FlexGrowProps } from 'styled-system'
-import { Colors, FontFamilies, FontSizes, LineHeights } from '../theme';
+import {
+  color,
+  ColorProps,
+  compose,
+  flexGrow,
+  FlexGrowProps,
+  fontSize,
+  FontSizeProps,
+  space,
+  SpaceProps,
+  system,
+  typography,
+  TypographyProps as StyledTypographyProps
+} from 'styled-system'
+import {Colors, FontFamilies, FontSizes} from '../theme';
 
 export const Text = styled('p')(
   compose(
@@ -15,6 +28,17 @@ export interface TypographyProps extends SpaceProps, ColorProps, StyledTypograph
   fontFamily?: keyof FontFamilies
   fontSize?: keyof FontSizes
   color?: keyof Colors
+  wordBreak?: string
+}
+
+const wordBreak = system({
+  wordBreak: {
+    property: 'wordBreak'
+  }
+})
+
+const customProps = () => {
+  return system({ wordBreak: true, whiteSpace: true })
 }
 
 export const Typography = styled(Text)<TypographyProps>`
@@ -22,7 +46,8 @@ export const Typography = styled(Text)<TypographyProps>`
   font-family: ${({ fontFamily, theme }) => theme.fontFamilies[fontFamily || 'primary']};
   font-size: ${({ as, fontSize, theme }) => theme.fontSizes[fontSize || as || 'p']};
   line-height: ${({ as, fontSize, theme }) => theme.lineHeights[fontSize || as || 'p']};
-
+  
   ${fontSize}
   ${flexGrow}
+  ${customProps}
 `
