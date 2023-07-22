@@ -8,6 +8,7 @@ import {EthereumAddress} from '../types';
 import {useMemo} from 'react';
 
 const ENABLED_CHAINS = [
+  42161, // arbitrum
   421613, // arbitrum goerli
 ]
 

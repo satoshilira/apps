@@ -97,7 +97,7 @@ export const PreSaleInfoCard = styled(Row)<any>`
   top: -11.25%;
   bottom: -35.94%;
   border-left: 10px;
-  border-top-left-radius: 30;
+  border-top-left-radius: 30px;
 `
 
 // TODO: move to src/components/modals/Backdrop.ts
