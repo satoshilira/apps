@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "sst dev",
-    "build": "sst build --profile lira",
-    "deploy": "sst deploy --profile lira --region eu-west-1  --stage tst",
-    "deploy:prd": "sst deploy --profile lira --region eu-central-1  --stage prd",
-    "remove": "sst remove --profile lira --region eu-west-1 --stage tst",
+    "build": "sst build --profile pay-chain-dev",
+    "deploy": "sst deploy --profile pay-chain-dev --region eu-central-1  --stage tst",
+    "remove": "sst remove --profile pay-chain-dev --region eu-central-1 --stage tst",
+    "deploy:prd": "sst deploy --profile pay-chain-dev --region eu-south-1  --stage prd",
+    "remove:prd": "sst remove --profile pay-chain-dev --region eu-south-1 --stage prd",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
