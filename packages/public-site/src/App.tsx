@@ -32,8 +32,8 @@ export default function App() {
           <Routes>
             <Route path='/' element={<Home/>}/>
             <Route path='/tokens' element={<Tokens/>}/>
-            <Route path='/sacrifice' element={<Sacrifice/>}/>
-            <Route path='/blockchain-data' element={<BlockchainData/>}/>
+            {/*<Route path='/sacrifice' element={<Sacrifice/>}/>*/}
+            {/*<Route path='/blockchain-data' element={<BlockchainData/>}/>*/}
           </Routes>
           <Footer/>
         </BrowserRouter>

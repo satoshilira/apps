@@ -4,8 +4,8 @@ import { PublicSite} from "./stacks/MyStack";
 export default {
   config(_input) {
     return {
-      name: "backend",
-      region: "eu-west-1",
+      name: "satoshilira-public-site",
+      region: "eu-central-1",
     };
   },
   stacks(app) {
