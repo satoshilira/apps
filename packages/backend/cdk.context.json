@@ -1,10 +1,10 @@
 {
-  "hosted-zone:account=468063035209:domainName=satoshilira.xyz:region=eu-west-1": {
-    "Id": "/hostedzone/Z063637325QL3UZRXACCQ",
+  "hosted-zone:account=588902685593:domainName=satoshilira.xyz:region=eu-central-1": {
+    "Id": "/hostedzone/Z08582501DTDZMEKHTBJI",
     "Name": "satoshilira.xyz."
   },
-  "hosted-zone:account=468063035209:domainName=satoshilira.io:region=eu-central-1": {
-    "Id": "/hostedzone/Z0512734EULUFFN4YCFQ",
+  "hosted-zone:account=588902685593:domainName=satoshilira.io:region=eu-south-1": {
+    "Id": "/hostedzone/Z0616226S8VCXNI0NFBX",
     "Name": "satoshilira.io."
   }
 }
