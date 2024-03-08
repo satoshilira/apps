@@ -1,0 +1,3 @@
+[submodule "packages/whitepaper-site"]
+	path = packages/whitepaper-site
+	url = git@github.com:satoshilira/whitepaper-site.git
