@@ -6,5 +6,9 @@
   "hosted-zone:account=588902685593:domainName=satoshilira.io:region=eu-south-1": {
     "Id": "/hostedzone/Z0616226S8VCXNI0NFBX",
     "Name": "satoshilira.io."
+  },
+  "hosted-zone:account=588902685593:domainName=satoshilira.io:region=eu-central-1": {
+    "Id": "/hostedzone/Z0616226S8VCXNI0NFBX",
+    "Name": "satoshilira.io."
   }
 }

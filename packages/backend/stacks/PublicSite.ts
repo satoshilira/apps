@@ -1,6 +1,7 @@
 import {StackContext, StaticSite} from 'sst/constructs';
 import {RemovalPolicy} from 'aws-cdk-lib';
 
+
 export function PublicSite({ stack }: StackContext) {
   const zoneName = `satoshilira.${stack.stage === 'prd' ? 'io' : 'xyz'}`;
 
@@ -15,18 +16,17 @@ export function PublicSite({ stack }: StackContext) {
         removalPolicy: RemovalPolicy.DESTROY,
       },
     },
-    fileOptions: [
-      {
-        exclude: '*',
-        include: '*.html',
+    assets: {
+      fileOptions: [{
+        files: '*',
+        ignore: '*.html',
         cacheControl: 'max-age=0,no-cache,no-store,must-revalidate',
-      },
-      {
-        exclude: '*',
-        include: ['*.js', '*.css'],
+      }, {
+        files: '*',
+        ignore: ['*.js', '*.css'],
         cacheControl: 'max-age=31536000,public,immutable',
-      },
-    ],
+      }]
+    },
   });
 
   // Show the endpoint in the output

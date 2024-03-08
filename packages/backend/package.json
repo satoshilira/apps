@@ -1,23 +1,25 @@
 {
   "name": "backend",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "sst dev",
     "build": "sst build --profile pay-chain-dev",
-    "deploy": "sst deploy --profile pay-chain-dev --region eu-central-1  --stage tst",
-    "remove": "sst remove --profile pay-chain-dev --region eu-central-1 --stage tst",
-    "deploy:prd": "sst deploy --profile pay-chain-dev --region eu-south-1  --stage prd",
-    "remove:prd": "sst remove --profile pay-chain-dev --region eu-south-1 --stage prd",
+    "deploy:public-site": "sst deploy --profile pay-chain-dev --region eu-central-1 --stage tst PublicSite",
+    "deploy:whitepaper-site": "sst deploy --profile pay-chain-dev --region eu-central-1 --stage tst WhitepaperSiteStack",
+    "deploy:prd:public-site": "sst deploy --profile pay-chain-dev --region eu-central-1 --stage prd PublicSite",
+    "deploy:prd:whitepaper-site": "sst deploy --profile pay-chain-dev --region eu-central-1 --stage prd WhitepaperSiteStack",
+    "remove:public-site": "sst remove --profile pay-chain-dev --region eu-south-1 --stage tst PublicSite",
+    "remove:whitepaper-site": "sst remove --profile pay-chain-dev --region eu-south-1 --stage tst WhitepaperSiteStack",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
-    "sst": "^2.11.5",
-    "aws-cdk-lib": "2.79.1",
-    "constructs": "10.1.156",
-    "typescript": "^5.0.4",
-    "@tsconfig/node16": "^1.0.4"
+    "sst": "^2.36.1",
+    "aws-cdk-lib": "2.101.1",
+    "constructs": "10.2.69",
+    "typescript": "^5.2.2",
+    "@tsconfig/node18": "^18.2.2"
   },
   "workspaces": [
     "packages/*"
