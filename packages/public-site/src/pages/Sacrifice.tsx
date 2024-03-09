@@ -76,10 +76,10 @@ export default function Sacrifice() {
   const { chain } = useNetwork()
   const { wbtcBalance } = useWbtcBalance()
 
-  console.log('wbtc balance', wbtcBalance)
-  console.log('sacrifice', { started, sacrificeTransaction, isLoadingSacrifceTransacion, sacrificeTransactionSuccess })
-  console.log('chain', chain)
-  console.log('allowance', allowance, BigNumber.from(allowance || 0).toString())
+  // console.log('wbtc balance', wbtcBalance)
+  // console.log('sacrifice', { started, sacrificeTransaction, isLoadingSacrifceTransacion, sacrificeTransactionSuccess })
+  // console.log('chain', chain)
+  // console.log('allowance', allowance, BigNumber.from(allowance || 0).toString())
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -102,8 +102,6 @@ export default function Sacrifice() {
   const sacrificeButtonDisabled = !!error || !isLoadingSacrifceTransacion
 
   const onSacrifice = () => {
-    console.log('on sacrifice', amount)
-
     if (!error) {
       if (canSacrifice) {
         writeSacrificeTransaction({

@@ -29,7 +29,7 @@ export function ConnectButton() {
   return (
     <Col alignItems="center">
       <StyledButton onClick={() => isConnected ? disconnect() : connect()}>
-        <img src={metamask} width={30} />
+        <img src={metamask} width={30} alt="metamask icon" />
         <Typography color="white" margin={0} flexGrow={1}>{isConnected ? 'Disconnect' : 'Connect'} Metamask</Typography>
       </StyledButton>
     </Col>

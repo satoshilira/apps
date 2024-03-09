@@ -1,9 +1,10 @@
-import logo from '../../img/satoshi-logo.svg'
-import {Row} from "../Row";
-import {Typography} from "../Typography";
-import styled from "styled-components";
-import {NavLink} from "react-router-dom";
-import button from "../../img/button.svg";
+import logo from '../../img/satoshi-logo.svg';
+import { Row } from '../Row';
+import { Typography } from '../Typography';
+import styled from 'styled-components';
+import { NavLink, useLocation } from 'react-router-dom';
+import button from '../../img/button.svg';
+import { ConnectButton } from '../ConnectButton/ConnectButton';
 
 const StyledMenuItem = styled(Typography)`
   color: ${props => props.theme.colors['white-80']};
@@ -32,7 +33,7 @@ const StyledMenuItem = styled(Typography)`
   &:active {
     color: ${props => props.theme.colors.primary};
   }
-`
+`;
 
 const StyledButton = styled(Row)`
   padding: 13px 28px;
@@ -40,19 +41,31 @@ const StyledButton = styled(Row)`
   font-weight: 700;
   line-height: 24px;
   background: ${props => props.theme.colors.horizontalGreenToCyan};
-`
+`;
+
+const isAppRoute = (pathname: string) => ['/presale'].includes(pathname);
+
 
 export function Header() {
+  const location = useLocation();
+  console.log('loc', location);
+
   return (
-    <Row height={176} margin={['20px 20px 0', '0 20px', '0 20px', '0 20px']} flexDirection={['column', 'row', 'row', 'row']} justifyContent="space-between" alignItems="center">
+    <Row
+      height={176}
+      margin={['20px 20px 0', '0 20px', '0 20px', '0 20px']}
+      flexDirection={['column', 'row', 'row', 'row']}
+      justifyContent="space-between"
+      alignItems="center"
+    >
       <Row width={[1, 1 / 3]} justifyContent={['center', 'flex-start']}>
         <NavLink to="/">
-          <img src={logo} height={64} alt="satoshi lira logo"/>
+          <img src={logo} height={64} alt="satoshi lira logo" />
         </NavLink>
       </Row>
 
       <Row width={1 / 3} justifyContent="center">
-        <a href='https://whitepaper.satoshilira.io' target="_blank" rel="noreferrer">
+        <a href="https://whitepaper.satoshilira.io" target="_blank" rel="noreferrer">
           <StyledMenuItem marginRight={28}>
             WHITEPAPER
           </StyledMenuItem>
@@ -71,11 +84,13 @@ export function Header() {
         {/*</NavLink>*/}
       </Row>
 
-      <Row width={1 / 3} justifyContent="flex-end" display={['none','none','none','flex']}>
-        <NavLink to="/">
-          <img src={button} height={64} alt="Buy LIRA" style={{opacity: 0.3}}/>
-        </NavLink>
+      <Row width={1 / 3} justifyContent="flex-end" display={['none', 'none', 'none', 'flex']}>
+        {isAppRoute(location.pathname) ? <ConnectButton /> : (
+          <NavLink to="/presale">
+            <img src={button} height={64} alt="Buy LIRA" style={{ opacity: 0.3 }} />
+          </NavLink>
+        )}
       </Row>
     </Row>
-  )
+  );
 }

@@ -1,69 +1,53 @@
-import {useAccount, useConnect, useContractRead, useContractWrite, useDisconnect, useNetwork} from 'wagmi';
-import {InjectedConnector} from 'wagmi/connectors/injected'
-import lira from '@satoshi-lira/deployments/arbitrum/LIRA.json'
-import wbtc from '@satoshi-lira/deployments/arbitrumGoerli/MockWBTC.json'
-import sacrifice from '@satoshi-lira/deployments/arbitrumGoerli/LIRASacrifice.json'
-import {BigNumber} from 'ethers';
-import {EthereumAddress} from '../types';
-import {useMemo} from 'react';
+import { useContractRead, useContractWrite, useNetwork } from 'wagmi';
+import lira from '@satoshi-lira/deployments/arbitrum/LIRA.json';
+import wbtc from '@satoshi-lira/deployments/arbitrumGoerli/MockWBTC.json';
+import sacrifice from '@satoshi-lira/deployments/arbitrumGoerli/LIRASacrifice.json';
+import { BigNumber } from 'ethers';
+import { EthereumAddress } from '../types';
+import { useMemo } from 'react';
+import { useWallet } from './useWallet';
+
+export * from './useWallet';
 
 const ENABLED_CHAINS = [
   42161, // arbitrum
   421613, // arbitrum goerli
-]
-
-export function useWallet() {
-  const { address, isConnected } = useAccount()
-
-  console.log('wallet address', address)
-
-  const { connect } = useConnect({
-    connector: new InjectedConnector(),
-  })
-
-  const { disconnect } = useDisconnect()
-
-  return {
-    address,
-    isConnected,
-    connect,
-    disconnect,
-  }
-}
+  421614, // arbitrum sepolia
+];
 
 export const useWbtcBalance = () => {
-  const { address } = useWallet()
+  const { address } = useWallet();
 
   const { data: wbtcBalance, isLoading: isWbtcBalanceLoading, isError: isWbtcBalanceError } = useContractRead({
     abi: wbtc.abi,
     address: wbtc.address as EthereumAddress,
     functionName: 'balanceOf',
     args: [address],
-  })
+  });
 
   return {
     wbtcBalance,
     isWbtcBalanceLoading,
     isWbtcBalanceError,
-  }
-}
+  };
+};
 
 export function useLira() {
-  const { chain } = useNetwork()
-  console.log('useLira chain', chain)
+  const { chain } = useNetwork();
+  console.log('chain', chain);
   const { data: totalSupply, isLoading: isLoadingTotalSupply } = useContractRead({
     abi: lira.abi,
     address: lira.address as EthereumAddress,
-    functionName: 'totalSupply'
-  })
+    functionName: 'totalSupply',
+  });
 
   const { data: lockedSupply, isLoading: isLoadingLockedSupply } = useContractRead({
     abi: lira.abi,
     address: lira.address as EthereumAddress,
-    functionName: 'lockedSupply'
-  })
+    functionName: 'lockedSupply',
+  });
 
-  const intrinsicValue = BigNumber.from(lockedSupply || 0).toNumber() / BigNumber.from(totalSupply || 0).div(BigNumber.from(10).pow(8)).toNumber()
+  const intrinsicValue = BigNumber.from(lockedSupply || 0).toNumber() / BigNumber.from(totalSupply || 0).div(BigNumber.from(10).pow(8)).toNumber();
 
   return {
     totalSupply: BigNumber.from(totalSupply || 0).div(BigNumber.from(10).pow(8)),
@@ -71,43 +55,42 @@ export function useLira() {
     intrinsicValue,
     lockedSupply,
     isLoadingLockedSupply,
-  }
+  };
 }
 
 export function useSacrifice() {
-  const { chain } = useNetwork()
+  const { chain } = useNetwork();
 
   const chainEnabled = useMemo<boolean>(() => {
     if (chain && chain.id && ENABLED_CHAINS.includes(chain.id)) {
-      return true
+      return true;
     }
 
-    return false
-  }, [chain])
+    return false;
+  }, [chain]);
 
   const address = useMemo<EthereumAddress>(() => {
-    switch(chain?.id) {
+    switch (chain?.id) {
       case 421613:
-        return sacrifice.address as EthereumAddress
+        return sacrifice.address as EthereumAddress;
       default:
-        return '0x'
+        return '0x';
     }
-  }, [chain])
+  }, [chain]);
 
-  console.log('useSacrifice chain', {chain, address})
   const { data: started, isLoading: isLoadingStarted } = useContractRead({
     abi: sacrifice.abi,
     address,
     functionName: 'started',
     enabled: chainEnabled,
-  })
+  });
 
   const { data: ended, isLoading: isLoadingEnded } = useContractRead({
     abi: sacrifice.abi,
     address,
     functionName: 'ended',
     enabled: chainEnabled,
-  })
+  });
 
   const { data: round, isLoading: isLoadingRound, refetch: refetchRound } = useContractRead({
     abi: sacrifice.abi,
@@ -115,7 +98,7 @@ export function useSacrifice() {
     functionName: 'round',
     watch: !!started,
     enabled: chainEnabled,
-  })
+  });
 
   const { data: sacrificable, isLoading: isLoadingSacrificable } = useContractRead({
     abi: sacrifice.abi,
@@ -123,7 +106,7 @@ export function useSacrifice() {
     functionName: 'sacrificable',
     enabled: chainEnabled,
     watch: !!started,
-  })
+  });
 
   const { data: sacrifices, isLoading: isLoadingSacrifices } = useContractRead({
     abi: sacrifice.abi,
@@ -131,7 +114,7 @@ export function useSacrifice() {
     functionName: 'sacrifices',
     enabled: chainEnabled,
     watch: !!started,
-  })
+  });
 
   const {
     data: sacrificeTransaction,
@@ -143,20 +126,20 @@ export function useSacrifice() {
     abi: sacrifice.abi,
     address,
     functionName: 'sacrifice',
-  })
+  });
 
   const {
     data: approveTransaction,
     isLoading: isLoadingApproveTransacion,
     isSuccess: approveTransactionSuccess,
-    write: writeApproveTransaction
+    write: writeApproveTransaction,
   } = useContractWrite({
     abi: wbtc.abi,
     address: wbtc.address as EthereumAddress,
     functionName: 'approve',
-  })
+  });
 
-  const { address: walletAddress } = useWallet()
+  const { address: walletAddress } = useWallet();
 
   const { data: allowance, isLoading: isAllowanceLoading } = useContractRead({
     abi: wbtc.abi,
@@ -165,10 +148,7 @@ export function useSacrifice() {
     enabled: chainEnabled,
     watch: chainEnabled,
     args: [walletAddress, address],
-  })
-
-  // @ts-ignore
-  console.log('aaa', sacrificeError?.cause.reason)
+  });
 
   return {
     // TODO: typing lib
@@ -176,7 +156,7 @@ export function useSacrifice() {
     approveTransaction,
     approveTransactionSuccess,
     // @ts-ignore
-    bonus: round?.bonus !== undefined ?  Number(round?.bonus) : 0,
+    bonus: round?.bonus !== undefined ? Number(round?.bonus) : 0,
     // @ts-ignore
     end: new Date(Number(round?.end) * 1000) || 0,
     ended,
@@ -201,5 +181,5 @@ export function useSacrifice() {
     started,
     writeApproveTransaction,
     writeSacrificeTransaction,
-  }
+  };
 }

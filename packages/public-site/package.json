@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@metamask/sdk": "^0.3.0",
+    "@reduxjs/toolkit": "^2.2.1",
     "@satoshi-lira/deployments": "1.1.0-beta.5",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -18,9 +19,9 @@
     "react": "^18.2.0",
     "react-countdown": "^2.3.5",
     "react-dom": "^18.2.0",
+    "react-overlays": "5.2.1",
     "react-router-dom": "^6.11.2",
     "react-scripts": "5.0.1",
-    "react-overlays": "5.2.1",
     "sort-by": "^1.2.0",
     "styled-components": "^5.3.11",
     "styled-system": "^5.1.5",

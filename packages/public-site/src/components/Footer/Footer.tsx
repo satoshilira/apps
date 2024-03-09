@@ -147,6 +147,11 @@ export function Footer() {
                   Satoshi Lira
                 </StyledFooterItem>
               </NavLink>
+              <NavLink to="/blockchain-data">
+                <StyledFooterItem>
+                  Blockchain Data
+                </StyledFooterItem>
+              </NavLink>
             </Col>
 
             {/* <Col width={[1 / 2]}>

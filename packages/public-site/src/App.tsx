@@ -10,6 +10,7 @@ import {Home} from './pages/Home';
 import Tokens from './pages/Tokens';
 import Sacrifice from './pages/Sacrifice';
 import BlockchainData from './pages/BlockchainData';
+import { Presale } from './pages/Presale';
 
 const { publicClient, webSocketPublicClient } = configureChains(
   [arbitrum, arbitrumGoerli],
@@ -32,8 +33,9 @@ export default function App() {
           <Routes>
             <Route path='/' element={<Home/>}/>
             <Route path='/tokens' element={<Tokens/>}/>
-            {/*<Route path='/sacrifice' element={<Sacrifice/>}/>*/}
-            {/*<Route path='/blockchain-data' element={<BlockchainData/>}/>*/}
+            <Route path='/presale' element={<Presale />} />
+            <Route path='/sacrifice' element={<Sacrifice/>}/>
+            <Route path='/blockchain-data' element={<BlockchainData/>}/>
           </Routes>
           <Footer/>
         </BrowserRouter>

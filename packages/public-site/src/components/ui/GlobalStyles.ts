@@ -70,6 +70,6 @@ export const GlobalStyles = createGlobalStyle`
   }
   
   h5 {
-    margin: 0 0 28px 0;
+    margin: 0;
   }
 `;

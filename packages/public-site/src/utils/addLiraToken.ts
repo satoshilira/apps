@@ -27,7 +27,7 @@ export async function addLiraToken() {
     if (wasAdded) {
       console.log('Thanks for your interest!');
     } else {
-      console.log('wan not added!');
+      console.log('Not added, maybe next time?');
     }
   } catch (error) {
     console.log(error);

@@ -1,34 +1,43 @@
 export interface FontSizes {
-  h1: string
-  h2: string
-  h3: string
-  h4: string
-  h5: string
-  h6: string
-  button: string
-  body: string
-  subtitle: string
-  p: string
-  caption: string
+  h1: string;
+  h2: string;
+  h3: string;
+  h4: string;
+  h5: string;
+  h6: string;
+  button: string;
+  body: string;
+  subtitle: string;
+  p: string;
+  caption: string;
 }
 
 export interface LineHeights {
-  h1: string
-  h2: string
-  h3: string
-  h4: string
-  h5: string
-  h6: string
-  button: string
-  body: string
-  subtitle: string
-  p: string
-  caption: string
+  h1: string;
+  h2: string;
+  h3: string;
+  h4: string;
+  h5: string;
+  h6: string;
+  button: string;
+  body: string;
+  subtitle: string;
+  p: string;
+  caption: string;
+
+  xs: string;
+  sm: string;
+  base: string;
+  lg: string;
+  xl: string;
+  '2xl': string;
+  '3xl': string;
+  '4xl': string;
 }
 
 export interface FontFamilies {
-  primary: string
-  secondary: string
+  primary: string;
+  secondary: string;
 }
 
 export interface Colors {
@@ -79,7 +88,7 @@ const fontSizes: FontSizes = {
   subtitle: '24px',
   p: '18px',
   caption: '16px',
-}
+};
 
 const lineHeights: LineHeights = {
   h1: '116px',
@@ -93,12 +102,21 @@ const lineHeights: LineHeights = {
   subtitle: '42px',
   p: '26px',
   caption: '24px',
-}
+
+  xs: '1rem',
+  sm: '1.25rem',
+  base: '1.5rem',
+  lg: '1.75rem',
+  xl: '1.75rem',
+  '2xl': '2rem',
+  '3xl': '2.25rem',
+  '4xl': '2.50rem',
+};
 
 const fontFamilies: FontFamilies = {
   primary: 'Apercu Mono Pro',
   secondary: 'Avenir Next',
-}
+};
 
 const colors: Colors = {
   dark: '#0A0A0A',
@@ -127,13 +145,13 @@ const colors: Colors = {
   horizontalGreenToCyan: 'linear-gradient(94.56deg, #B6FE46 7.15%, rgba(9, 254, 245, 0.6) 90.05%)',
   verticalGreenToTransparent: 'linear-gradient(180deg, rgba(182, 254, 70, 0.8) 0%, rgba(217, 217, 217, 0) 100%)',
   verticalWhiteToTransparent: 'linear-gradient(180deg, rgba(255, 255, 255, 0.8) 7.41%, rgba(255, 255, 255, 0) 85.19%)',
-}
+};
 
 const theme = {
   fontSizes,
   lineHeights,
   fontFamilies,
   colors,
-}
+};
 
-export default theme
+export default theme;
