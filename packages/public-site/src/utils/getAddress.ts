@@ -1,6 +1,7 @@
 import arbitrumGoerliWbtc from '@satoshi-lira/deployments/arbitrumGoerli/MockWBTC.json'
 import arbitrumGoerliSacrifice from '@satoshi-lira/deployments/arbitrumGoerli/LIRASacrifice.json'
-import { Chain } from 'wagmi'
+import { Chain } from 'viem';
+
 
 export function getWbtcAddress(network?: Chain & { unsupported?: boolean | undefined; }) {
   switch(network) {

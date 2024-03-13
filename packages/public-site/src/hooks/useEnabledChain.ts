@@ -1,4 +1,4 @@
-import { useNetwork } from 'wagmi';
+import { useAccount } from 'wagmi';
 
 const ENABLED_CHAINS = [
   42161, // arbitrum
@@ -7,7 +7,7 @@ const ENABLED_CHAINS = [
 ];
 
 export function useEnabledChain() {
-  const network = useNetwork();
+  const network = useAccount();
 
   if (!network || !network.chain) {
     return false;

@@ -1,4 +1,4 @@
-import { useContractRead, useContractWrite, useNetwork } from 'wagmi';
+import { useAccount, useReadContract, useWriteContract } from 'wagmi';
 import lira from '@satoshi-lira/deployments/arbitrum/LIRA.json';
 import wbtc from '@satoshi-lira/deployments/arbitrumGoerli/MockWBTC.json';
 import sacrifice from '@satoshi-lira/deployments/arbitrumGoerli/LIRASacrifice.json';
@@ -18,7 +18,7 @@ const ENABLED_CHAINS = [
 export const useWbtcBalance = () => {
   const { address } = useWallet();
 
-  const { data: wbtcBalance, isLoading: isWbtcBalanceLoading, isError: isWbtcBalanceError } = useContractRead({
+  const { data: wbtcBalance, isLoading: isWbtcBalanceLoading, isError: isWbtcBalanceError } = useReadContract({
     abi: wbtc.abi,
     address: wbtc.address as EthereumAddress,
     functionName: 'balanceOf',
@@ -33,15 +33,15 @@ export const useWbtcBalance = () => {
 };
 
 export function useLira() {
-  const { chain } = useNetwork();
-  console.log('chain', chain);
-  const { data: totalSupply, isLoading: isLoadingTotalSupply } = useContractRead({
+  const { chain } = useAccount();
+
+  const { data: totalSupply, isLoading: isLoadingTotalSupply } = useReadContract({
     abi: lira.abi,
     address: lira.address as EthereumAddress,
     functionName: 'totalSupply',
   });
 
-  const { data: lockedSupply, isLoading: isLoadingLockedSupply } = useContractRead({
+  const { data: lockedSupply, isLoading: isLoadingLockedSupply } = useReadContract({
     abi: lira.abi,
     address: lira.address as EthereumAddress,
     functionName: 'lockedSupply',
@@ -59,15 +59,9 @@ export function useLira() {
 }
 
 export function useSacrifice() {
-  const { chain } = useNetwork();
+  const { chain } = useAccount();
 
-  const chainEnabled = useMemo<boolean>(() => {
-    if (chain && chain.id && ENABLED_CHAINS.includes(chain.id)) {
-      return true;
-    }
-
-    return false;
-  }, [chain]);
+  const chainEnabled = useMemo<boolean>(() => !!(chain && chain.id && ENABLED_CHAINS.includes(chain.id)), [chain]);
 
   const address = useMemo<EthereumAddress>(() => {
     switch (chain?.id) {
@@ -78,91 +72,98 @@ export function useSacrifice() {
     }
   }, [chain]);
 
-  const { data: started, isLoading: isLoadingStarted } = useContractRead({
+  const { data: started, isLoading: isLoadingStarted } = useReadContract({
     abi: sacrifice.abi,
     address,
     functionName: 'started',
-    enabled: chainEnabled,
+    query: {
+      enabled: chainEnabled,
+    }
   });
 
-  const { data: ended, isLoading: isLoadingEnded } = useContractRead({
+  const { data: ended, isLoading: isLoadingEnded } = useReadContract({
     abi: sacrifice.abi,
     address,
     functionName: 'ended',
-    enabled: chainEnabled,
+    query: {
+      enabled: chainEnabled,
+    }
   });
 
-  const { data: round, isLoading: isLoadingRound, refetch: refetchRound } = useContractRead({
+  const { data: round, isLoading: isLoadingRound, refetch: refetchRound } = useReadContract({
     abi: sacrifice.abi,
     address,
     functionName: 'round',
-    watch: !!started,
-    enabled: chainEnabled,
+    query: {
+      enabled: chainEnabled,
+    }
   });
 
-  const { data: sacrificable, isLoading: isLoadingSacrificable } = useContractRead({
+  const { data: sacrificable, isLoading: isLoadingSacrificable } = useReadContract({
     abi: sacrifice.abi,
     address,
     functionName: 'sacrificable',
-    enabled: chainEnabled,
-    watch: !!started,
+    query: {
+      enabled: chainEnabled,
+    },
   });
 
-  const { data: sacrifices, isLoading: isLoadingSacrifices } = useContractRead({
+  const { data: sacrifices, isLoading: isLoadingSacrifices } = useReadContract({
     abi: sacrifice.abi,
     address,
     functionName: 'sacrifices',
-    enabled: chainEnabled,
-    watch: !!started,
+    query: {
+      enabled: chainEnabled,
+    }
   });
 
-  const {
-    data: sacrificeTransaction,
-    isLoading: isLoadingSacrifceTransacion,
-    isSuccess: sacrificeTransactionSuccess,
-    write: writeSacrificeTransaction,
-    error: sacrificeError,
-  } = useContractWrite({
-    abi: sacrifice.abi,
-    address,
-    functionName: 'sacrifice',
-  });
+  // const {
+  //   data: sacrificeTransaction,
+  //   isLoading: isLoadingSacrifceTransacion,
+  //   isSuccess: sacrificeTransactionSuccess,
+  //   write: writeSacrificeTransaction,
+  //   error: sacrificeError,
+  // } = useWriteContract({
+  //   abi: sacrifice.abi,
+  //   address,
+  //   functionName: 'sacrifice',
+  // });
 
-  const {
-    data: approveTransaction,
-    isLoading: isLoadingApproveTransacion,
-    isSuccess: approveTransactionSuccess,
-    write: writeApproveTransaction,
-  } = useContractWrite({
-    abi: wbtc.abi,
-    address: wbtc.address as EthereumAddress,
-    functionName: 'approve',
-  });
+  // const {
+  //   data: approveTransaction,
+  //   isLoading: isLoadingApproveTransacion,
+  //   isSuccess: approveTransactionSuccess,
+  //   write: writeApproveTransaction,
+  // } = useWriteContract({
+  //   abi: wbtc.abi,
+  //   address: wbtc.address as EthereumAddress,
+  //   functionName: 'approve',
+  // });
 
   const { address: walletAddress } = useWallet();
 
-  const { data: allowance, isLoading: isAllowanceLoading } = useContractRead({
-    abi: wbtc.abi,
-    address: wbtc.address as EthereumAddress,
-    functionName: 'allowance',
-    enabled: chainEnabled,
-    watch: chainEnabled,
-    args: [walletAddress, address],
-  });
+  // const { data: allowance, isLoading: isAllowanceLoading } = useReadContract({
+  //   abi: wbtc.abi,
+  //   address: wbtc.address as EthereumAddress,
+  //   functionName: 'allowance',
+  //   enabled: chainEnabled,
+  //   watch: chainEnabled,
+  //   args: [walletAddress, address],
+  // });
 
   return {
     // TODO: typing lib
-    allowance: BigNumber.from(allowance ? allowance : 0),
-    approveTransaction,
-    approveTransactionSuccess,
+    // allowance: BigNumber.from(allowance ? allowance : 0),
+    // approveTransaction,
+    // approveTransactionSuccess,
     // @ts-ignore
     bonus: round?.bonus !== undefined ? Number(round?.bonus) : 0,
     // @ts-ignore
     end: new Date(Number(round?.end) * 1000) || 0,
     ended,
-    isLoadingApproveTransacion,
+    // isLoadingApproveTransacion,
     isLoadingEnded,
-    isLoadingSacrifceTransacion,
+    // isLoadingSacrifceTransacion,
     isLoadingSacrificable,
     isLoadingSacrifice: isLoadingRound,
     isLoadingSacrifices,
@@ -171,15 +172,15 @@ export function useSacrifice() {
     sacrificable: sacrificable ? BigNumber.from(sacrificable) : 0,
     // @ts-ignore
     sacrificeError: sacrificeError?.cause?.reason,
-    sacrificeTransaction,
-    sacrificeTransactionSuccess,
+    // sacrificeTransaction,
+    // sacrificeTransactionSuccess,
     sacrifices: sacrifices || [],
     // @ts-ignore
     sacrified: Number(round?.sacrified) || 0,
     // @ts-ignore
     start: new Date(Number(round?.start) * 1000) || 0,
     started,
-    writeApproveTransaction,
-    writeSacrificeTransaction,
+    // writeApproveTransaction,
+    // writeSacrificeTransaction,
   };
 }

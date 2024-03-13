@@ -1,14 +1,12 @@
 import { useAccount, useConnect, useDisconnect } from 'wagmi';
-import { InjectedConnector } from 'wagmi/connectors/injected';
+import { injected } from 'wagmi/connectors'
 
 export function useWallet() {
   const { address, isConnected, isDisconnected, status } = useAccount();
 
   console.log('wallet', address, status);
 
-  const { connect } = useConnect({
-    connector: new InjectedConnector(),
-  });
+  const { connect } = useConnect()
 
   const { disconnect } = useDisconnect();
 

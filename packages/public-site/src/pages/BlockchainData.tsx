@@ -3,16 +3,12 @@ import { useWallet } from '../hooks';
 import { Typography } from '../components/Typography';
 import { ConnectButton } from '../components/ConnectButton/ConnectButton';
 import { useEffect } from 'react';
-import { useNetwork } from 'wagmi';
 import { Row } from '../components/Row';
+import { useAccount } from 'wagmi';
 
 export default function BlockchainData() {
   const { isConnected, isDisconnected, status } = useWallet();
-  const network = useNetwork();
-
-  useEffect(() => {
-    console.log('n', network);
-  }, []);
+  const network = useAccount();
 
   useEffect(() => {
     console.log('wallet.status', status);

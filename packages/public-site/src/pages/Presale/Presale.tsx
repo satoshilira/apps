@@ -1,21 +1,21 @@
-import { useNetwork } from 'wagmi';
 import { Col } from '../../components/Col';
+import { usePresale } from '../../hooks/usePresale';
+import { Countdown } from '../../components';
 import { Typography } from '../../components/Typography';
-import { useWallet } from '../../hooks';
+
 
 export function Presale() {
-  const wallet = useWallet();
-  const network = useNetwork();
+  const presale = usePresale();
+
+  console.log('pre', presale.started.data);
+  console.log('round', presale.round);
 
   return (
     <Col style={{ minHeight: '100vh' }} alignItems="center">
-      <Typography as="h5" color="white">Wallet</Typography>
-      <Typography color="white">{wallet.status}</Typography>
-
-      <Typography as="h5" color="white">Network</Typography>
-      <Typography color="white">{network.chain?.name}</Typography>
-      <Typography color="white">{network.chain?.id}</Typography>
-      <Typography color="white">{JSON.stringify(network.chain, null, 2)}</Typography>
+      <Countdown date={new Date()} />
+      <Typography>start: {presale.round?.start.toString()}</Typography>
+      <Typography>start: {presale.round?.end.toString()}</Typography>
+      <Typography>start: {presale.round?.bonus.toString()}</Typography>
     </Col>
   );
 }
