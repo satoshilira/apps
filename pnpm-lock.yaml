@@ -41,9 +41,12 @@ importers:
       '@reduxjs/toolkit':
         specifier: ^2.2.1
         version: 2.2.1(react@18.2.0)
+      '@satoshi-lira/abi':
+        specifier: 1.2.0
+        version: 1.2.0
       '@satoshi-lira/deployments':
-        specifier: 2.0.0-beta.6
-        version: 2.0.0-beta.6
+        specifier: 2.0.0-beta.7
+        version: 2.0.0-beta.7
       '@tanstack/react-query':
         specifier: ^5.27.5
         version: 5.27.5(react@18.2.0)
@@ -6211,8 +6214,12 @@ packages:
       - encoding
     dev: false
 
-  /@satoshi-lira/deployments@2.0.0-beta.6:
-    resolution: {integrity: sha512-YcL8fEah0SqGboVazkYUauKZ60jrFVNg6HGgYdt5tGDPXnwsyDuSSfuPjKpDj28hrENzEwM79G9FIBNeVd95hw==}
+  /@satoshi-lira/abi@1.2.0:
+    resolution: {integrity: sha512-eDuFfySs1tmb0mKDHOuhjumj4o0PmkG9fIKKgo8AT3EN97hdVsyMen8UPNfYh/pMBzOmmyjLP0YVNWofsaMwLw==}
+    dev: false
+
+  /@satoshi-lira/deployments@2.0.0-beta.7:
+    resolution: {integrity: sha512-DBoKcwONuB3UDGeS5/LyUDC4v2JRwpsr5vsZPapfaCY5PQ8MQlbZ6cCBJmUK/QqqdlPYYWudDTm34fTnxNQyMQ==}
     dev: false
 
   /@scure/base@1.1.1:

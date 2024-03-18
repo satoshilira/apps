@@ -1,4 +1,4 @@
-import { useAccount, useReadContract, useWriteContract } from 'wagmi';
+import { useAccount, useReadContract } from 'wagmi';
 import lira from '@satoshi-lira/deployments/arbitrum/LIRA.json';
 import wbtc from '@satoshi-lira/deployments/arbitrumGoerli/MockWBTC.json';
 import sacrifice from '@satoshi-lira/deployments/arbitrumGoerli/LIRASacrifice.json';
@@ -6,6 +6,7 @@ import { BigNumber } from 'ethers';
 import { EthereumAddress } from '../types';
 import { useMemo } from 'react';
 import { useWallet } from './useWallet';
+import { liraAbi } from '@satoshi-lira/abi';
 
 export * from './useWallet';
 
@@ -33,21 +34,22 @@ export const useWbtcBalance = () => {
 };
 
 export function useLira() {
-  const { chain } = useAccount();
-
   const { data: totalSupply, isLoading: isLoadingTotalSupply } = useReadContract({
-    abi: lira.abi,
+    abi: liraAbi,
     address: lira.address as EthereumAddress,
     functionName: 'totalSupply',
   });
 
   const { data: lockedSupply, isLoading: isLoadingLockedSupply } = useReadContract({
-    abi: lira.abi,
+    abi: liraAbi,
     address: lira.address as EthereumAddress,
     functionName: 'lockedSupply',
   });
 
   const intrinsicValue = BigNumber.from(lockedSupply || 0).toNumber() / BigNumber.from(totalSupply || 0).div(BigNumber.from(10).pow(8)).toNumber();
+
+  console.log('lira totalSupply', totalSupply, isLoadingTotalSupply);
+  console.log('lira lockedSupply', lockedSupply, isLoadingLockedSupply);
 
   return {
     totalSupply: BigNumber.from(totalSupply || 0).div(BigNumber.from(10).pow(8)),
@@ -78,7 +80,7 @@ export function useSacrifice() {
     functionName: 'started',
     query: {
       enabled: chainEnabled,
-    }
+    },
   });
 
   const { data: ended, isLoading: isLoadingEnded } = useReadContract({
@@ -87,7 +89,7 @@ export function useSacrifice() {
     functionName: 'ended',
     query: {
       enabled: chainEnabled,
-    }
+    },
   });
 
   const { data: round, isLoading: isLoadingRound, refetch: refetchRound } = useReadContract({
@@ -96,7 +98,7 @@ export function useSacrifice() {
     functionName: 'round',
     query: {
       enabled: chainEnabled,
-    }
+    },
   });
 
   const { data: sacrificable, isLoading: isLoadingSacrificable } = useReadContract({
@@ -114,7 +116,7 @@ export function useSacrifice() {
     functionName: 'sacrifices',
     query: {
       enabled: chainEnabled,
-    }
+    },
   });
 
   // const {

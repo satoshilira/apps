@@ -2,5 +2,9 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/packages/whitepaper-site" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/packages/whitepaper-site/themes/hugo-theme-techdoc" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../priv-smart-contracts" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../turbo" vcs="Git" />
   </component>
 </project>

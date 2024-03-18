@@ -8,5 +8,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="priv-smart-contracts" />
+    <orderEntry type="module" module-name="turbo" />
   </component>
 </module>

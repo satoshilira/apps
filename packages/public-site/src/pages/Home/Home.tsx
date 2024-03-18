@@ -1,23 +1,18 @@
-import {ReactElement, useState} from 'react';
+import { ReactElement, useState } from 'react';
 import styled from 'styled-components';
-import {BigNumber} from 'ethers';
-import {Col} from '../../components/Col';
-import {Typography} from '../../components/Typography';
-import {ColorWrap, Countdown} from '../../components';
-import {Row} from '../../components/Row';
-import {useLira} from '../../hooks';
-import {formatUint256} from '../../utils';
-import {Colors} from '../../theme';
+import { BigNumber } from 'ethers';
+import { Col } from '../../components/Col';
+import { Typography } from '../../components/Typography';
+import { ColorWrap } from '../../components';
+import { Row } from '../../components/Row';
+import { useLira } from '../../hooks';
+import { formatUint256 } from '../../utils';
+import { Colors } from '../../theme';
 import daVinciLira from '../../img/da-vinci-lira.svg';
-import stepOneCardImage from '../../img/lira-pre-sale-step-1.png';
-import stepTwoCardImage from '../../img/lira-pre-sale-step-2.png';
-import stepThreeCardImage from '../../img/lira-pre-sale-step-3.png';
-import stepOneModalImage from '../../img/modal-pre-sale-step-1.png';
-import stepTwoModalImage from '../../img/modal-pre-sale-step-2.png';
-import stepThreeModalImage from '../../img/modal-pre-sale-step-3.png';
 import button from '../../img/button.svg';
-import {background, BackgroundProps, fontSize, FontSizeProps} from 'styled-system';
+import { background, BackgroundProps, fontSize, FontSizeProps } from 'styled-system';
 import { Modal } from 'react-overlays';
+import { NavLink } from 'react-router-dom';
 
 
 const StyledContainer = styled(Col)<BackgroundProps>`
@@ -25,19 +20,19 @@ const StyledContainer = styled(Col)<BackgroundProps>`
   background-position-y: -250px;
 
   ${background};
-`
+`;
 
 const StyledText = styled.p<FontSizeProps>`
   color: ${props => props.theme.colors.white};
   font-family: ${props => props.theme.fontFamilies.secondary};
   ${fontSize};
-`
+`;
 
 export interface StyledRectangleProps {
-  width: number
-  height: number
-  color: keyof Colors
-  opacity?: number
+  width: number;
+  height: number;
+  color: keyof Colors;
+  opacity?: number;
 }
 
 export const StyledRectangle = styled(Row)<StyledRectangleProps>`
@@ -46,15 +41,15 @@ export const StyledRectangle = styled(Row)<StyledRectangleProps>`
   height: ${props => props.height}px;
   background: ${props => props.theme.colors[props.color]};
   opacity: ${props => props.opacity || 1};
-`
+`;
 
 export interface InfoBoxProps {
-  width: number | number[]
-  heading: string | ReactElement | null
-  subtitle: string
+  width: number | number[];
+  heading: string | ReactElement | null;
+  subtitle: string;
 }
 
-export function InfoBox({width, heading, subtitle}: InfoBoxProps) {
+export function InfoBox({ width, heading, subtitle }: InfoBoxProps) {
   return (
     <Col width={width}>
       <StyledRectangle width={32} height={4} color="primary" />
@@ -65,16 +60,16 @@ export function InfoBox({width, heading, subtitle}: InfoBoxProps) {
         <Typography color="white-80">{subtitle}</Typography>
       </Row>
     </Col>
-  )
+  );
 }
 
 export interface TextWithVariationProps {
-  text: string
-  value: string
-  positive?: boolean
+  text: string;
+  value: string;
+  positive?: boolean;
 }
 
-export function TextWithVariation({text, value, positive = true}: TextWithVariationProps) {
+export function TextWithVariation({ text, value, positive = true }: TextWithVariationProps) {
   return (
     <Typography
       as="h6"
@@ -83,7 +78,7 @@ export function TextWithVariation({text, value, positive = true}: TextWithVariat
     >
       {text} (<ColorWrap color={positive ? 'primary' : 'secondary'}>{positive ? '+' : '-'}{value}%</ColorWrap>)
     </Typography>
-  )
+  );
 }
 
 // TODO: move to src/components/cards/PreSaleInfoCard.ts
@@ -98,10 +93,10 @@ export const PreSaleInfoCard = styled(Row)<any>`
   bottom: -35.94%;
   border-left: 10px;
   border-top-left-radius: 30px;
-`
+`;
 
 // TODO: move to src/components/modals/Backdrop.ts
-const Backdrop = styled("div")`
+const Backdrop = styled('div')`
   position: fixed;
   z-index: 1040;
   top: 0;
@@ -123,20 +118,26 @@ const PositionedModal = styled(Modal)`
 `;
 
 export function Home() {
-  const {totalSupply, lockedSupply, isLoadingTotalSupply, isLoadingLockedSupply, intrinsicValue} = useLira()
+  const { totalSupply, lockedSupply, isLoadingTotalSupply, isLoadingLockedSupply, intrinsicValue } = useLira();
 
   const lockedSupplyText = !isLoadingLockedSupply && lockedSupply
-    ? <Typography as="h6" color="white"
-                  margin="32px 0 0">{`${formatUint256(lockedSupply as BigNumber, 0, false, 0)} SAT`}</Typography>
-    : null
+    ? <Typography
+      as="h6" color="white"
+      margin="32px 0 0"
+    >{`${formatUint256(lockedSupply, 0, false, 0)} SAT`}</Typography>
+    : null;
 
   const totalSupplyText = !isLoadingTotalSupply
-    ? <Typography as="h6" color="white"
-                  margin="32px 0 0">{`${formatUint256(totalSupply as BigNumber, 0, false, 0)} LIRA`}</Typography>
-    : null
+    ? <Typography
+      as="h6" color="white"
+      margin="32px 0 0"
+    >{`${formatUint256(totalSupply as BigNumber, 0, false, 0)} LIRA`}</Typography>
+    : null;
 
-  const liraValue = <TextWithVariation text={`1 LIRA = ${intrinsicValue.toFixed(2)} SAT`}
-                                       value={Number((intrinsicValue - 1) * 100).toFixed(2)}/>
+  const liraValue = <TextWithVariation
+    text={`1 LIRA = ${intrinsicValue.toFixed(2)} SAT`}
+    value={Number((intrinsicValue - 1) * 100).toFixed(2)}
+  />;
 
   const [showModalOne, setShowModalOne] = useState(false);
   const [showModalTwo, setShowModalTwo] = useState(false);
@@ -149,7 +150,7 @@ export function Home() {
       <Col maxWidth={2048} margin={['0 20px', '0 20px', '0 20px', '0 20px']} alignItems="flex-start">
         <Row>
           <StyledText as="h2" fontSize={['32px', '46px', '80px', '96px']}>
-            CRYPTOCURRENCY <br/>GLOBAL <ColorWrap color="primary">REVOLUTION</ColorWrap>
+            CRYPTOCURRENCY <br />GLOBAL <ColorWrap color="primary">REVOLUTION</ColorWrap>
           </StyledText>
         </Row>
 
@@ -167,18 +168,20 @@ export function Home() {
         </Row>
 
         <Row marginTop={56}>
-          <InfoBox width={1} heading={liraValue} subtitle="LIRA INTRINSIC VALUE"/>
+          <InfoBox width={1} heading={liraValue} subtitle="LIRA INTRINSIC VALUE" />
         </Row>
 
-        <Row marginTop={120} display={['none','none','none','flex']}>
-          <img src={button} alt="Buy LIRA" style={{opacity: 0.3}}/>
+        <Row marginTop={120} display={['none', 'none', 'none', 'flex']}>
+          <NavLink to="/presale">
+            <img src={button} alt="Buy LIRA" style={{ opacity: 0.3 }} />
+          </NavLink>
         </Row>
       </Col>
 
       <Col maxWidth={2048} margin={['0 20px 180px']} alignItems={['center', 'center', 'center', 'flex-start']}>
         <Row>
           <StyledText as="h3" fontSize={['32px', '46px', '46px', '80px']}>
-            <ColorWrap color="primary">"</ColorWrap><br/>Join the <ColorWrap color="primary">revolution</ColorWrap>
+            <ColorWrap color="primary">"</ColorWrap><br />Join the <ColorWrap color="primary">revolution</ColorWrap>
           </StyledText>
         </Row>
         <Col width={[1, 1, 1, 4 / 5]}>
@@ -357,5 +360,5 @@ export function Home() {
       </Col> */}
 
     </StyledContainer>
-  )
+  );
 }

@@ -2,6 +2,8 @@ import { useAccount, useReadContract } from 'wagmi';
 import { useMemo } from 'react';
 import { EthereumAddress } from '../types';
 import presaleSepolia from '@satoshi-lira/deployments/arbitrumSepolia/LiraDaoPresale.json';
+import { liraDaoPresaleAbi } from '@satoshi-lira/abi';
+
 
 const ENABLED_CHAINS = [
   42161, // arbitrum
@@ -30,21 +32,23 @@ export function usePresale() {
     functionName: 'started',
     query: {
       enabled: chainEnabled,
-    }
+    },
   });
 
   const { data: round } = useReadContract({
-    abi: roundAbi,
+    abi: liraDaoPresaleAbi,
     address,
     functionName: 'round',
     query: {
       enabled: chainEnabled,
-    }
-  })
+    },
+  });
 
   return {
     address,
     started,
     round,
-  }
+    roundStartDate: new Date(Number(round?.start) * 1000) || 0,
+    roundEndDate: new Date(Number(round?.end) * 1000) || 0,
+  };
 }

@@ -1,7 +1,7 @@
 import {BigNumber, utils} from 'ethers';
 
 // TODO: refactor signature to (value: BigInt, options: FormatOptions)
-export const formatUint256 = (uint256Value: BigNumber, decimalPlaces: number, showDecimals = true, padDecimals: number) => {
+export const formatUint256 = (uint256Value: BigNumber | bigint, decimalPlaces: number, showDecimals = true, padDecimals: number) => {
   const numberString = utils.formatUnits(uint256Value, decimalPlaces);
 
   const [integerPart, decimalPart] = numberString.split('.');

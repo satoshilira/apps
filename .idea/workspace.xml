@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="afc2b58f-db09-4184-8916-bb2839e3ce08" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/apps.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/apps.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/public-site/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/public-site/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/public-site/src/hooks/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/packages/public-site/src/hooks/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/public-site/src/hooks/usePresale.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/public-site/src/hooks/usePresale.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/public-site/src/pages/Home/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/packages/public-site/src/pages/Home/Home.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/public-site/src/pages/Presale/Presale.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/packages/public-site/src/pages/Presale/Presale.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/public-site/src/utils/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/public-site/src/utils/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pnpm-lock.yaml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../turbo" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2ddBOOPf86igcunh8CmA2lGfkWx" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "/Users/federicopaletta/code/satoshi-lira/turbo/packages/ui2/src",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "pnpm",
+    "npm.backend > deploy:whitepaper-site.executor": "Run",
+    "npm.deployents > sync.executor": "Run",
+    "npm.lira-dao-presale > compile.executor": "Run",
+    "npm.lira-dao-presale > deploy:arbitrumSepolia.executor": "Run",
+    "npm.lira-dao-presale > deploy:ganache.executor": "Run",
+    "npm.lira-dao-presale > test (1).executor": "Run",
+    "npm.lira-dao-presale > test.executor": "Run",
+    "npm.lira-dao-token > compile.executor": "Run",
+    "npm.lira-dao-token > deploy:arbitrumSepolia.executor": "Run",
+    "npm.lira-dao-token > deploy:ganache.executor": "Run",
+    "npm.lira-dao-token > test.executor": "Run",
+    "npm.public-site > start.executor": "Run",
+    "npm.turbo > build.executor": "Run",
+    "npm.turbo > clean.executor": "Run",
+    "npm.ui > build.executor": "Run",
+    "npm.ui > lint.executor": "Run",
+    "npm.web > build.executor": "Run",
+    "npm.web > start.executor": "Run",
+    "ts.external.directory.path": "/Users/federicopaletta/code/satoshi-lira/apps/packages/backend/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/../turbo/packages/ui2/src" />
+      <recent name="$PROJECT_DIR$/../turbo/packages" />
+      <recent name="$PROJECT_DIR$/../turbo/apps/web/src/pages" />
+      <recent name="$PROJECT_DIR$/../turbo/apps" />
+      <recent name="$PROJECT_DIR$/../turbo/contracts/lira-dao-presale/contracts" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.ui &gt; build">
+    <configuration name="backend &gt; deploy:whitepaper-site" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/packages/backend/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="deploy:whitepaper-site" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="turbo &gt; clean" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/../turbo/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="clean" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="ui &gt; build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/../turbo/packages/ui/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="web &gt; build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/../turbo/apps/web/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="web &gt; start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/../turbo/apps/web/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.web &gt; start" />
+        <item itemvalue="npm.ui &gt; build" />
+        <item itemvalue="npm.backend &gt; deploy:whitepaper-site" />
+        <item itemvalue="npm.turbo &gt; clean" />
+        <item itemvalue="npm.web &gt; build" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="afc2b58f-db09-4184-8916-bb2839e3ce08" name="Changes" comment="" />
+      <created>1710328042466</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1710328042466</updated>
+      <workItem from="1710328044411" duration="2853000" />
+      <workItem from="1710335996970" duration="23835000" />
+      <workItem from="1710523519661" duration="18309000" />
+      <workItem from="1710690359869" duration="6425000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
